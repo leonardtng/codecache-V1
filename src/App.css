@@ -2,7 +2,6 @@
   text-align: center;
 }
 
-
 .bg-navbar {
   background-color: #ffffff;
 }
@@ -23,42 +22,10 @@ img {
   border-color: #003a76;
 }
 
-#box {
-position: fixed;
-top: 120px;
-left: 0px;
-width: 250px;
-padding: 20px 0px;
-height: 100%;
-background-color: #ffffff;
-  color: #343838;
-  /* box-shadow: 3px 3px 5px 6px gray; */
-}
-
-#box.active {
-left: 0px;
-}
-
-#items {
-position: relative;
-top: 40%;
-transform: translateY(-50%);
-}
-
-#items .item {
+.cards {
   position: relative;
-cursor: pointer;
-font-size: 0.8em;
-padding: 15px 30px;
-  transition: all 250ms;
-}
-
-#items a {
-  color: inherit;
-  text-decoration: none;
-}
-
-#items .item:hover {
-  padding: 15px 45px;
-  background-color: lightgray;
+  z-index: -1;
+  top: 100px;
+  margin: 30px 0px;
+  left: 50px
 }

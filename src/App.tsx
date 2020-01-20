@@ -1,5 +1,7 @@
 import React from 'react';
-import logo from './images/codecacheLogo.png'
+import logo from './images/codecacheLogo.png';
+import LoginButton from './components/LoginButton';
+import ProjectCard from './components/ProjectCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -11,41 +13,49 @@ const Logo: React.FC = () => {
   )
 }
 
-const Login: React.FC = () => {
-  return (
-    <div className="col-md-2">
-      <button type="button" className="btn btn-info">Login/Signup</button>
+const SearchBar: React.FC = () => {
+  return(
+    <div className="col-md-8">
+      <form className="form-inline">
+        <input className="form-control mr-sm-2 col-md" type="search" placeholder="Search" aria-label="Search"/>
+        <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
   )
 }
 
-const SearchBar: React.FC = () => {
+const NavBar: React.FC = () => {
   return (
     <header>
       <nav className="navbar bg-navbar row">
         <Logo />
-        <div className="col-md-8">
-          <form className="form-inline">
-            <input className="form-control mr-sm-2 col-md" type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-outline-primary my-2 my-sm-0 ntublue" type="submit">Search</button>
-          </form>
-        </div>
-        <Login />
+        <SearchBar />
+        <LoginButton />
       </nav>
     </header>
+  )
+}
+
+const ProjectSpace: React.FC = () => {
+  return(
+    <div className='row'>
+      <ProjectCard />
+      <ProjectCard />
+      <ProjectCard />
+      <ProjectCard />
+      <ProjectCard />
+      <ProjectCard />
+    </div>
   )
 }
 
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <SearchBar />
-      <div id="box">
-        <div id="items">
-          <a href="./home.html"><div className="item">Home</div></a>
-          <a href="./index.html"><div className="item">Logout</div></a>
-        </div>
+    <div className="App">     
+      <div className="container-fluid">
+        <NavBar />
+        <ProjectSpace />
       </div>
     </div>
   );
