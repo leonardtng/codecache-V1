@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Popup from './Popup'
-import '../css/LoginButton.css'
+import Popup from './Popup';
+import '../css/LoginButton.css';
 
 const LoginButton: React.FC = () => {
   let [showPopup, setShowPopup] = useState(false);
@@ -9,7 +9,7 @@ const LoginButton: React.FC = () => {
     return(
       <div className="col-md-2">
         <button type="button" className="btn btn-dark" onClick={() => setShowPopup(showPopup=true)}>Login/Signup</button>
-        <div className='popup-bg' onClick={() => setShowPopup(showPopup=false)}>
+        <div className="popup-bg" onClick={() => setShowPopup(showPopup=false)}>
           <Popup />
         </div>
       </div>

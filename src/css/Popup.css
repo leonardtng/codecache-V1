@@ -1,28 +1,28 @@
 .popup {
-    position: absolute;
-    left: 40%;
-    right: 40%;
-    top: 25%;
-    bottom: 25%;
-    margin: auto;
-    border-radius: 20px;
-    background: white;
+  position: absolute;
+  left: 40%;
+  right: 40%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  border-radius: 20px;
+  background: white;
 }
 
 .gh-login {
-    position: absolute;
-    width: 80%;
-    left: 10%;
-    right: 10%;
-    top: 20%;
-    bottom: 70%;
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  right: 10%;
+  top: 20%;
+  bottom: 70%;
 }
 
 .gh-signup {
-    position: absolute;
-    width: 80%;
-    left: 10%;
-    right: 10%;
-    top: 70%;
-    bottom: 20%;
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  right: 10%;
+  top: 70%;
+  bottom: 20%;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './images/codecacheLogo.png';
 import LoginButton from './components/LoginButton';
-import ProjectCard from './components/ProjectCard';
+import ProjectSpace from './components/ProjectSpace';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -27,7 +27,7 @@ const SearchBar: React.FC = () => {
 const NavBar: React.FC = () => {
   return (
     <header>
-      <nav className="navbar bg-navbar row">
+      <nav className="navbar row">
         <Logo />
         <SearchBar />
         <LoginButton />
@@ -35,20 +35,6 @@ const NavBar: React.FC = () => {
     </header>
   )
 }
-
-const ProjectSpace: React.FC = () => {
-  return(
-    <div className='row'>
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
-    </div>
-  )
-}
-
 
 const App: React.FC = () => {
   return (
