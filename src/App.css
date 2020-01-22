@@ -1,8 +1,8 @@
-.App {
+#App {
   text-align: center;
 }
 
-header {
+#navbar {
   position: fixed;
   width: 100%;
   background-color: #ffffff;

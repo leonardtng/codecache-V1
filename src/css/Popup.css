@@ -12,17 +12,11 @@
 .gh-login {
   position: absolute;
   width: 80%;
-  left: 10%;
-  right: 10%;
-  top: 20%;
-  bottom: 70%;
+  top: 10%;
 }
 
 .gh-signup {
   position: absolute;
   width: 80%;
-  left: 10%;
-  right: 10%;
   top: 70%;
-  bottom: 20%;
 }

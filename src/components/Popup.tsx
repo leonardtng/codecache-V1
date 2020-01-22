@@ -1,11 +1,31 @@
 import React from 'react';
 import "../css/Popup.css";
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+  }),
+);
+
 
 const Popup: React.FC = () => {
+  const classes = useStyles();
   return (
-    <div className="popup">
-      <button className="btn btn-dark gh-login" type="submit">Login with Github</button>
-      <button className="btn btn-dark gh-signup" type="submit">Signup with Github</button>
+    <div className={classes.root}>
+      <div className="popup">
+      <Button className="gh-login" variant="contained" color="primary">
+        Login with Github
+      </Button>
+      <Button className="gh-signup" variant="contained" color="primary">
+        Signup with Github
+      </Button>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,22 @@
 import React from 'react';
 import '../css/ProjectCard.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles({
+  card: {
+    maxWidth: 500,
+  },
+  media: {
+    height: 300,
+  },
+});
 
 interface Props {
   id: number;
@@ -8,18 +25,35 @@ interface Props {
 }
 
 const ProjectCard: React.FC<Props> = (props) => {
+  const classes = useStyles();
   return (
-    <div className="col-md-3">
-      <div className="cards" id={props.id.toString()}>
-        <div className="card card-dimensions">
-          <img className="card-img-top image-dimensions" src={props.img} alt="ProjectCard" />
-          <div className="card-body">
-            <h5 className="card-title">{props.name}</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="../App.tsx" className="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+    <div id="cards">
+      <Card className={classes.card} id="card">
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={props.img}
+            title={props.name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+              across all continents except Antarctica
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
+      </Card>
     </div>
   )
 }
