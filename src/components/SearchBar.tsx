@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& .MuiTextField-root': {
-        margin: theme.spacing(1),
+        margin: theme.spacing(3),
         width: 1000,
       },
     },
@@ -22,4 +22,4 @@ const SearchBar: React.FC = () => {
   )
 }
 
-export default SearchBar
+export default SearchBar;

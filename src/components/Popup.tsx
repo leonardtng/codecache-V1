@@ -30,4 +30,4 @@ const Popup: React.FC = () => {
   )
 }
 
-export default Popup
+export default Popup;

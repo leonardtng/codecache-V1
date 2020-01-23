@@ -9,6 +9,14 @@
   z-index: 1;
 }
 
+#navcolor {
+  background-color: #23343B;
+}
+
+#courses {
+  position: relative;
+}
+
 img { 
   width: 80%; 
   height: 80%; 

@@ -6,7 +6,7 @@ import img3 from '../images/dragon-stock.jpg';
 import img4 from '../images/axolotl-stock.jpg';
 import img5 from '../images/totoro-horizontal.jpg';
 
-const projects = [
+const projectList = [
     { id: 1, img: img1, name: 'Project 1' },
     { id: 2, img: img2, name: 'Project 2' },
     { id: 3, img: img3, name: 'Project 3' },
@@ -14,4 +14,4 @@ const projects = [
     { id: 5, img: img5, name: 'Project 5' },    
 ];
 
-export default projects
+export default projectList
