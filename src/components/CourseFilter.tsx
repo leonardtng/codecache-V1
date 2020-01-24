@@ -7,7 +7,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const CourseFilter: React.FC = () => {
   return (
-    <Grid container spacing={3} id="courses">
+    <Grid container spacing={3}>
       <Grid item xs={1}>
         <b>Course</b>
       </Grid>

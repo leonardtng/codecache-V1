@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       margin: '0px 2%',
     },
-    pink: {
+    black: {
       background: 'linear-gradient(45deg, #536976 30%, #292e49 90%)',
       borderRadius: 3,
       border: 0,
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const CourseButtons: React.FC = () => {
   const classes = useStyles();
   const courses = courseList.map((course) =>
-    <Button variant="contained" color="primary" className={clsx(classes.root, classes.pink)} key={course.id}>
+    <Button variant="contained" color="primary" className={clsx(classes.root, classes.black)} key={course.id}>
       {course.name}
     </Button>
   );
