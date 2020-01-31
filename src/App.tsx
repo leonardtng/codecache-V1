@@ -1,4 +1,5 @@
 import React from 'react';
+import { useContext } from 'react';
 import logo from './images/Codecache.svg';
 import SearchBar from './components/SearchBar';
 import CourseFilter from './components/CourseFilter';
@@ -7,6 +8,8 @@ import ProjectSpace from './components/ProjectSpace';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import './App.css';
+
+import UserState, { userState } from './contexts/UserState';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,6 +26,27 @@ const Logo: React.FC = () => {
 }
 
 const NavBar: React.FC = () => {
+  const { isLoggedIn } = useContext(userState);
+
+  if (isLoggedIn === true) {
+    return (
+      <Grid container spacing={0} id="navbar">
+        <Grid item xs={2} id="navcolor">
+          <Logo />
+        </Grid>
+        <Grid item xs={8} id="navcolor">
+        </Grid>
+        <Grid item xs={2} id="navcolor">
+
+        </Grid>
+        <Grid item xs={12}>
+          <SearchBar />
+        </Grid>
+        <CourseFilter />
+      </Grid>
+    )
+  }
+
   return (
     <Grid container spacing={0} id="navbar">
       <Grid item xs={2} id="navcolor">
@@ -44,10 +68,12 @@ const NavBar: React.FC = () => {
 const App: React.FC = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root} id="App">
-      <NavBar />
-      <ProjectSpace />
-    </div>
+    <UserState>
+      <div className={classes.root} id="App">
+        <NavBar />
+        <ProjectSpace />
+      </div>
+    </UserState>
   );
 }
 

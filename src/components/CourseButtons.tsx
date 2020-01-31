@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
         padding: theme.spacing(1),
       },
       margin: '0px 2%',
+      width: 194,
     },
     black: {
       background: 'linear-gradient(45deg, #536976 30%, #292e49 90%)',
