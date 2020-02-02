@@ -6,7 +6,7 @@ const UserState: React.FC = (props) => {
     let [isLoggedIn, setUserState] = useState(false);
 
     return(
-        <userState.Provider value={ {isLoggedIn: false, toggleLogin: () => {isLoggedIn? setUserState(false) : setUserState(true);}} }>
+        <userState.Provider value={ {isLoggedIn: isLoggedIn, toggleLogin: () => {isLoggedIn? setUserState(false) : setUserState(true);}} }>
             {props.children}
         </userState.Provider>
     )
