@@ -2,28 +2,3 @@
   text-align: center;
 }
 
-#navbar {
-  position: fixed;
-  width: 100%;
-  background-color: #ffffff;
-  z-index: 1;
-}
-
-#navcolor {
-  background-color: #23343B;
-}
-
-#courses {
-  position: relative;
-}
-
-img { 
-  width: 80%; 
-  height: 80%; 
-  object-fit: contain; 
-}
-
-.ntublue {
-  color: #003a76;
-  border-color: #003a76;
-}

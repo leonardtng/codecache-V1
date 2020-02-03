@@ -1,0 +1,25 @@
+img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+#navbar {
+  position: fixed;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 1;
+}
+
+#nav-color {
+  background-color: #23343B;
+}
+
+#icon-group {
+  margin-left: 8vw;
+}
+
+#icon-style {
+  color: #ffffff;
+  padding: 3%;
+}

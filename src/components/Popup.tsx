@@ -14,23 +14,21 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 const Popup: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className="popup">
-
-        <userState.Consumer>{({ isLoggedIn, toggleLogin }) => (
+      <userState.Consumer>{({ isLoggedIn, toggleLogin }) => (
+        <div className="popup">
           <Button className="gh-login" variant="contained" color="primary" onClick={toggleLogin}>
             Login with Github
-          </Button>)}
-        </userState.Consumer>
-
-        <Button className="gh-signup" variant="contained" color="primary">
-          Signup with Github
-         </Button>
-      </div>
+          </Button>
+          <Button className="gh-signup" variant="contained" color="primary" onClick={toggleLogin}>
+            Signup with Github
+          </Button>
+        </div>
+      )}
+      </userState.Consumer>
     </div>
   );
 }

@@ -14,28 +14,30 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+interface Props {
+  showPopup: boolean;
+  setShowPopup: () => void;
+}
+
+const PopupConditional: React.FC<Props> = ({ showPopup, setShowPopup }) => {
+  if (showPopup) {
+    return <div id="popup-bg" onClick={setShowPopup}>
+      <Popup />
+    </div>
+  }
+  return null
+}
+
 const LoginButton: React.FC = () => {
   const classes = useStyles();
   let [showPopup, setShowPopup] = useState(false);
-
-  if (showPopup === true) {
-    return (
-      <div className={classes.root}>
-        <Button variant="contained" color="secondary" onClick={() => setShowPopup(showPopup = true)}>
-          Login / Signup
-          </Button>
-        <div id="popup-bg" onClick={() => setShowPopup(showPopup = false)}>
-          <Popup />
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className={classes.root}>
       <Button variant="contained" color="secondary" onClick={() => setShowPopup(showPopup = true)}>
         Login / Signup
       </Button>
+      <PopupConditional showPopup={showPopup} setShowPopup={() => setShowPopup(showPopup = false)} />
     </div>
   )
 }
