@@ -4,11 +4,21 @@ import CourseButtons from './CourseButtons';
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    largeFont : {
+      fontSize: "x-large"
+    },
+  }),
+);
 
 const CourseFilter: React.FC = () => {
+  const classes=useStyles();
   return (
     <Grid container spacing={3}>
-      <Grid item xs={1}>
+      <Grid item xs={1} className={classes.largeFont}>
         <b>Course</b>
       </Grid>
       <Grid item xs={11}>
