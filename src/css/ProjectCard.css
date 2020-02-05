@@ -5,6 +5,8 @@
 }
 
 #cards:hover {
+  -ms-transform: translate(0px, -10px);  /* IE 9 */
+  -webkit-transform: translate(0px, -10px); /* Safari 3-8 */
   transform: translate(0px, -10px);
 }
 

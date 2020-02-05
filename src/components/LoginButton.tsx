@@ -39,7 +39,7 @@ const LoginButton: React.FC = () => {
       </Button>
       <PopupConditional showPopup={showPopup} setShowPopup={() => setShowPopup(showPopup = false)} />
     </div>
-  )
+  );
 }
 
 export default LoginButton;

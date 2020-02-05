@@ -40,7 +40,7 @@ const NavBar: React.FC = () => {
       </Grid>
       <CourseFilter />
     </Grid>
-  )
+  );
 }
 
 export default NavBar

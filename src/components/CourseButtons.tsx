@@ -37,7 +37,7 @@ const CourseButtons: React.FC = () => {
     <div>
       {courses}
     </div>
-  )
+  );
 }
 
 export default CourseButtons;

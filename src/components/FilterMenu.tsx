@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from '@material-ui/icons/Menu';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { userState } from '../contexts/UserState';
+import '../css/FilterMenu.css';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     menubg: {
-      backgroundColor: '#E4E4E4',
+      backgroundColor: '#ffff',
     },
     menuitemstyle: {
-      background: '#E4E4E4',
+      background: '#ffff',
       color: '#707070'
     },
   }),
@@ -23,7 +23,7 @@ interface Props {
   handleClose: () => void;
 }
 
-const DisplayMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
+const DisplayFilterMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
   const classes = useStyles();
   return (
     <Menu
@@ -37,23 +37,22 @@ const DisplayMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
       getContentAnchorEl={null}
       anchorOrigin={{
         vertical: 'bottom',
-        horizontal: 'right',
+        horizontal: 'left',
       }}
       transformOrigin={{
         vertical: 'top',
-        horizontal: 'right',
+        horizontal: 'left',
       }}
     >
-      <MenuItem className={classes.menuitemstyle}>Help</MenuItem>
-      <userState.Consumer>{({ isLoggedIn, toggleLogin }) =>
-        <MenuItem className={classes.menuitemstyle} onClick={toggleLogin}>Logout</MenuItem>
-      }
-      </userState.Consumer>
+      <MenuItem className={classes.menuitemstyle}>Commits</MenuItem>
+      <MenuItem className={classes.menuitemstyle}>Likes</MenuItem>
+      <MenuItem className={classes.menuitemstyle}>Views</MenuItem>
     </Menu>
   );
 }
 
-const MenuButton = () => {
+
+const FilterMenu: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -67,11 +66,11 @@ const MenuButton = () => {
   return (
     <span>
       <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>
-        <MenuIcon id="icon-style" fontSize="large" />
+        <FilterListIcon id="filter-icon-style" fontSize="large" />
       </IconButton>
-      <DisplayMenu anchorEl={anchorEl} handleClose={handleClose} />
+      <DisplayFilterMenu anchorEl={anchorEl} handleClose={handleClose} />
     </span>
   );
 }
 
-export default MenuButton;
+export default FilterMenu;

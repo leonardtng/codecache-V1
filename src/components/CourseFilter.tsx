@@ -39,7 +39,7 @@ const CourseFilter: React.FC = () => {
       <Grid item xs={12}>
       </Grid>
     </Grid>
-  )
+  );
 }
 
 export default CourseFilter;

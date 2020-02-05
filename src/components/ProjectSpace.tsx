@@ -14,7 +14,7 @@ const ProjectSpace: React.FC = () => {
     <Grid container spacing={0} id="card-space">
       {ProjectItems}
     </Grid>
-  )
+  );
 }
 
 export default ProjectSpace;

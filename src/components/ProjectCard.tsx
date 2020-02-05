@@ -55,7 +55,7 @@ const ProjectCard: React.FC<Props> = (props) => {
         </CardActions>
       </Card>
     </div>
-  )
+  );
 }
 
 export default ProjectCard;
