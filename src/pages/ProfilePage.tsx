@@ -3,6 +3,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import logo from '../images/Codecache.svg';
 import IconButton from '@material-ui/core/IconButton';
+import ProfileCard from '../components/ProfileCard';
 import { useHistory } from "react-router-dom";
 import HeaderIcons from '../components/HeaderIcons';
 
@@ -34,6 +35,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     largeFont: {
       fontSize: "x-large",
+    },
+    profilecardspace: {
+      position: 'fixed',
+      top: '100px'
+    },
+    cardspace: {
+      position: 'relative',
+      top: '300px',
     },
   }),
 );
@@ -71,10 +80,12 @@ const ProfilePage: React.FC = () => {
         </Grid>
       </Grid>
       <Grid container spacing={0}>
-        <Grid item xs={4}>
-
+        <Grid item xs={4} className={classes.profilecardspace}>
+          <ProfileCard />
         </Grid>
-        {/* TODO: MyProjectsSpace */}
+        <Grid item xs={8} className={classes.cardspace}>
+          {/* TODO: MyProjectsSpace */}
+        </Grid>
       </Grid>
     </div>
   );

@@ -11,7 +11,7 @@ const projectList = [
     { id: 2, img: img2, name: 'Project 2' },
     { id: 3, img: img3, name: 'Project 3' },
     { id: 4, img: img4, name: 'Project 4' },
-    { id: 5, img: img5, name: 'Project 5' },    
+    { id: 5, img: img5, name: 'Project 5' }, 
 ];
 
 export default projectList

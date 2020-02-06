@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ProjectSpace from './components/ProjectSpace';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,6 +19,7 @@ const App: React.FC = () => {
     <div className={classes.root}>
       <NavBar />
       <ProjectSpace />
+      <Footer />
     </div>
   );
 }

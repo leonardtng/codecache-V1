@@ -35,7 +35,7 @@ const Logo: React.FC = () => {
     <IconButton className={classes.logostyle} onClick={handleClick}>
       <img src={logo} alt="codecache" />
     </IconButton>
-  )
+  );
 }
 
 const NavBar: React.FC = () => {
