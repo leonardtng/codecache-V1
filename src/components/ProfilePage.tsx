@@ -1,9 +1,9 @@
 import React from 'react';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import logo from '../images/Codecache.svg';
 import ProfileButton from './ProfileButton';
 import MenuButton from './MenuButton';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

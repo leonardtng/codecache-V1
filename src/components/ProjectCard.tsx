@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/ProjectCard.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -10,8 +9,19 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
+  cardoutline: {
+    position: 'relative',
+    zIndex: 0,
+    padding: '8%',
+    '&:hover': {
+      msTransform: 'translate(0px, -10px)',  /* IE 9 */
+      webkitTransform: 'translate(0px, -10px)', /* Safari 3-8 */
+      transform: 'translate(0px, -10px)',
+    },
+  },
   card: {
     maxWidth: 500,
+    margin: 'auto',
   },
   media: {
     height: 300,
@@ -27,8 +37,8 @@ interface Props {
 const ProjectCard: React.FC<Props> = (props) => {
   const classes = useStyles();
   return (
-    <div id="cards">
-      <Card className={classes.card} id="card">
+    <div className={classes.cardoutline}>
+      <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
             className={classes.media}

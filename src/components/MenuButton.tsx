@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { userState } from '../contexts/UserState';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    iconstyle: {
+      color: '#ffffff',
+      padding: '7%',
+    },
     menubg: {
       backgroundColor: '#E4E4E4',
     },
     menuitemstyle: {
       background: '#E4E4E4',
-      color: '#707070'
+      color: '#707070',
     },
   }),
 );
@@ -54,12 +58,11 @@ const DisplayMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
 }
 
 const MenuButton = () => {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -67,7 +70,7 @@ const MenuButton = () => {
   return (
     <span>
       <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>
-        <MenuIcon id="icon-style" fontSize="large" />
+        <MenuIcon className={classes.iconstyle} fontSize="large" />
       </IconButton>
       <DisplayMenu anchorEl={anchorEl} handleClose={handleClose} />
     </span>

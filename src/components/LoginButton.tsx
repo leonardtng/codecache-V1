@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Popup from './Popup';
-import '../css/LoginButton.css';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Popup from './Popup';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -10,6 +9,18 @@ const useStyles = makeStyles((theme: Theme) =>
       '& > *': {
         margin: theme.spacing(2),
       },
+    },
+    popupbg: {
+      position: 'fixed',
+      width: '100%',
+      height: '100%',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      margin: 'auto',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      zIndex: 1,
     },
   }),
 );
@@ -20,8 +31,9 @@ interface Props {
 }
 
 const PopupConditional: React.FC<Props> = ({ showPopup, setShowPopup }) => {
+  const classes = useStyles();
   if (showPopup) {
-    return <div id="popup-bg" onClick={setShowPopup}>
+    return <div className={classes.popupbg} onClick={setShowPopup}>
       <Popup />
     </div>
   }

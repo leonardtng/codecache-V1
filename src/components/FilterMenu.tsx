@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import IconButton from "@material-ui/core/IconButton";
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import '../css/FilterMenu.css';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,8 +12,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuitemstyle: {
       background: '#ffff',
-      color: '#707070'
+      color: '#707070',
     },
+    filtericonstyle: {
+      color: '#000000',
+      padding: "3%",
+    }
   }),
 );
 
@@ -53,6 +56,7 @@ const DisplayFilterMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
 
 
 const FilterMenu: React.FC = () => {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -66,7 +70,7 @@ const FilterMenu: React.FC = () => {
   return (
     <span>
       <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>
-        <FilterListIcon id="filter-icon-style" fontSize="large" />
+        <FilterListIcon className={classes.filtericonstyle} fontSize="large" />
       </IconButton>
       <DisplayFilterMenu anchorEl={anchorEl} handleClose={handleClose} />
     </span>
