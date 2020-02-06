@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
 import logo from '../images/Codecache.svg';
 import SearchBar from './SearchBar';
 import CourseFilter from './CourseFilter';
@@ -8,6 +9,7 @@ import ProfileButton from './ProfileButton';
 import MenuButton from './MenuButton';
 import Grid from '@material-ui/core/Grid';
 import { userState } from '../contexts/UserState';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,15 +35,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Logo: React.FC = () => {
   const classes = useStyles();
-
+  let history = useHistory();
+  const handleClick = () => { history.push("/") }
   return (
-    <img className={classes.logostyle} src={logo} alt="codecache" />
+    <IconButton className={classes.logostyle} onClick={handleClick}>
+      <img src={logo} alt="codecache" />
+    </IconButton>
   )
 }
 
 const NavBar: React.FC = () => {
   const classes = useStyles();
-
   return (
     <Grid container spacing={0} className={classes.navbar}>
       <Grid item xs={2} className={classes.navcolor}>

@@ -66,7 +66,6 @@ const MenuButton = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   return (
     <span>
       <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>

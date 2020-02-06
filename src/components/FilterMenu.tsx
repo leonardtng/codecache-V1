@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     filtericonstyle: {
       color: '#000000',
       padding: "3%",
-    }
+    },
   }),
 );
 
@@ -54,19 +54,15 @@ const DisplayFilterMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
   );
 }
 
-
 const FilterMenu: React.FC = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   return (
     <span>
       <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>

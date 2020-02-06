@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import ProjectSpace from './components/ProjectSpace';
-import NavBar from './components/NavBar';
+import ProjectSpace from '../components/ProjectSpace';
+import NavBar from '../components/NavBar';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -12,14 +12,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const App: React.FC = () => {
+const UserLoggedIn: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <NavBar />
       <ProjectSpace />
     </div>
-  );
+  )
 }
 
-export default App;
+export default UserLoggedIn;

@@ -43,7 +43,6 @@ const PopupConditional: React.FC<Props> = ({ showPopup, setShowPopup }) => {
 const LoginButton: React.FC = () => {
   const classes = useStyles();
   let [showPopup, setShowPopup] = useState(false);
-
   return (
     <div className={classes.root}>
       <Button variant="contained" color="secondary" onClick={() => setShowPopup(showPopup = true)}>

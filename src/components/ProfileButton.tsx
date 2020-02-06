@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const ProfileButton: React.FC = () => {
   const classes = useStyles();
   let history = useHistory();
-  const handleClick = () => { history.push("./ProfilePage.tsx") };
+  const handleClick = () => { history.push("./profile") };
   return (
     <IconButton onClick={handleClick}>
       <AccountCircleIcon className={classes.iconstyle} fontSize="large" />

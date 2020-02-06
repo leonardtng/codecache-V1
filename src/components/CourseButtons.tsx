@@ -32,7 +32,6 @@ const CourseButtons: React.FC = () => {
       {course.name}
     </Button>
   );
-
   return (
     <div>
       {courses}
