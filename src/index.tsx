@@ -5,14 +5,12 @@ import App from './App';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
 import * as serviceWorker from './serviceWorker';
-import UserLoggedIn from './pages/UserLoggedIn';
 import UserState from './contexts/UserState';
 
 ReactDOM.render(
   <UserState>
     <Router>
       <Switch>
-        <Route path="/login" component={UserLoggedIn} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/" component={App} />
       </Switch>

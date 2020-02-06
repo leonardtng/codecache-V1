@@ -5,6 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { userState } from '../contexts/UserState';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,6 +30,9 @@ interface Props {
 
 const DisplayMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
   const classes = useStyles();
+  let history = useHistory();
+  const handleClick = () => { history.push("/") }
+  let location = useLocation();
   return (
     <Menu
       id="menu"
@@ -49,9 +53,14 @@ const DisplayMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
       }}
     >
       <MenuItem className={classes.menuitemstyle}>Help</MenuItem>
-      <userState.Consumer>{({ isLoggedIn, toggleLogin }) =>
-        <MenuItem className={classes.menuitemstyle} onClick={toggleLogin}>Logout</MenuItem>
-      }
+      <userState.Consumer>{({ isLoggedIn, toggleLogin }) => {
+        if (location.pathname === '/profile') {
+          return <MenuItem className={classes.menuitemstyle} onClick={function todo() {
+            toggleLogin();
+            handleClick();
+          }}>Logout</MenuItem>}
+        return <MenuItem className={classes.menuitemstyle} onClick={toggleLogin}>Logout</MenuItem>
+      }}
       </userState.Consumer>
     </Menu>
   );

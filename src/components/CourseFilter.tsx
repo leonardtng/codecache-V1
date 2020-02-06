@@ -9,7 +9,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     largeFont : {
-      fontSize: "x-large"
+      fontSize: "x-large",
     },
   }),
 );

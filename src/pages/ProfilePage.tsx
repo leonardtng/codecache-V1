@@ -3,14 +3,14 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import logo from '../images/Codecache.svg';
 import IconButton from '@material-ui/core/IconButton';
-import ProfileButton from '../components/ProfileButton';
-import MenuButton from '../components/MenuButton';
 import { useHistory } from "react-router-dom";
+import HeaderIcons from '../components/HeaderIcons';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+      textAlign: 'center',
     },
     logostyle: {
       width: '85%',
@@ -29,13 +29,19 @@ const useStyles = makeStyles((theme: Theme) =>
     icongroup: {
       marginLeft: '7vw',
     },
+    emptyspace: {
+      height: 75.72,
+    },
+    largeFont: {
+      fontSize: "x-large",
+    },
   }),
 );
 
 const Logo: React.FC = () => {
   const classes = useStyles();
   let history = useHistory();
-  const handleClick = () => { history.push("/login") };
+  const handleClick = () => { history.push("/") };
   return (
     <IconButton className={classes.logostyle} onClick={handleClick}>
       <img src={logo} alt="codecache" />
@@ -53,12 +59,22 @@ const ProfilePage: React.FC = () => {
         </Grid>
         <Grid item xs={8} className={classes.navcolor}>
         </Grid>
-        <Grid item xs={2} className={classes.navcolor}>
-          <span className={classes.icongroup}>
-            <ProfileButton />
-            <MenuButton />
-          </span>
+        <HeaderIcons />
+        <Grid container spacing={3}>
+          <Grid item xs={12} className={classes.emptyspace}>
+          </Grid>
+          <Grid item xs={1} className={classes.largeFont}>
+            <b>Profile</b>
+          </Grid>
+          <Grid item xs={11}>
+          </Grid>
         </Grid>
+      </Grid>
+      <Grid container spacing={0}>
+        <Grid item xs={4}>
+
+        </Grid>
+        {/* TODO: MyProjectsSpace */}
       </Grid>
     </div>
   );
