@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const SearchBar: React.FC = () => {
   const classes = useStyles();
+  
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <TextField id="outlined-search" label="Search" type="search" variant="outlined" InputProps={{

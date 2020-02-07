@@ -32,6 +32,7 @@ interface Props {
 
 const PopupConditional: React.FC<Props> = ({ showPopup, setShowPopup }) => {
   const classes = useStyles();
+
   if (showPopup) {
     return <div className={classes.popupbg} onClick={setShowPopup}>
       <Popup />
@@ -43,6 +44,7 @@ const PopupConditional: React.FC<Props> = ({ showPopup, setShowPopup }) => {
 const LoginButton: React.FC = () => {
   const classes = useStyles();
   let [showPopup, setShowPopup] = useState(false);
+  
   return (
     <div className={classes.root}>
       <Button variant="contained" color="secondary" onClick={() => setShowPopup(showPopup = true)}>

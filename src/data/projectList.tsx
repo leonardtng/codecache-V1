@@ -7,11 +7,11 @@ import img4 from '../images/axolotl-stock.jpg';
 import img5 from '../images/totoro-horizontal.jpg';
 
 const projectList = [
-    { id: 1, img: img1, name: 'Project 1' },
-    { id: 2, img: img2, name: 'Project 2' },
-    { id: 3, img: img3, name: 'Project 3' },
-    { id: 4, img: img4, name: 'Project 4' },
-    { id: 5, img: img5, name: 'Project 5' }, 
+    { id: 1, owner: 'Serene', img: img1, name: 'Project 1' },
+    { id: 2, owner: 'Jeffrey', img: img2, name: 'Project 2' },
+    { id: 3, owner: 'Leonard', img: img3, name: 'Project 3' },
+    { id: 4, owner: 'Latif', img: img4, name: 'Project 4' },
+    { id: 5, owner: 'Serene', img: img5, name: 'Project 5' }, 
 ];
 
 export default projectList

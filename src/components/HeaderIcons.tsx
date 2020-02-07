@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const HeaderIcons = () => {
   const classes = useStyles();
+  
   return (
     <Grid item xs={2} className={classes.navcolor}>
       <userState.Consumer>{({ isLoggedIn, toggleLogin }) => {

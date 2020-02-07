@@ -28,6 +28,7 @@ interface Props {
 
 const DisplayFilterMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
   const classes = useStyles();
+
   return (
     <Menu
       id="menu"
@@ -57,12 +58,15 @@ const DisplayFilterMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
 const FilterMenu: React.FC = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
   return (
     <span>
       <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>

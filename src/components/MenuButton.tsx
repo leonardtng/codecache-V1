@@ -33,6 +33,7 @@ const DisplayMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
   let history = useHistory();
   const handleClick = () => { history.push("/") }
   let location = useLocation();
+
   return (
     <Menu
       id="menu"
@@ -69,12 +70,15 @@ const DisplayMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
 const MenuButton = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
   return (
     <span>
       <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>

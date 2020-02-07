@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const CourseFilter: React.FC = () => {
-  const classes=useStyles();
+  const classes = useStyles();
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={1} className={classes.largeFont}>

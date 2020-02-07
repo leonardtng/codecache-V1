@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   cardoutline: {
     position: 'relative',
     zIndex: 0,
-    padding: '8%',
+    padding: "3vw",
     '&:hover': {
       msTransform: 'translate(0px, -10px)',  /* IE 9 */
       webkitTransform: 'translate(0px, -10px)', /* Safari 3-8 */
@@ -29,13 +29,13 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  id: number;
   img: string;
   name: string;
 }
 
 const ProjectCard: React.FC<Props> = (props) => {
   const classes = useStyles();
+  
   return (
     <div className={classes.cardoutline}>
       <Card className={classes.card}>

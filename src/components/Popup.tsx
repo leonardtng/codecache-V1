@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Popup: React.FC = () => {
   const classes = useStyles();
+  
   return (
     <div className={classes.root}>
       <userState.Consumer>{({ isLoggedIn, toggleLogin }) => (

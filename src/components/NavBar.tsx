@@ -31,6 +31,7 @@ const Logo: React.FC = () => {
   const classes = useStyles();
   let history = useHistory();
   const handleClick = () => { history.push("/") }
+
   return (
     <IconButton className={classes.logostyle} onClick={handleClick}>
       <img src={logo} alt="codecache" />
@@ -40,6 +41,7 @@ const Logo: React.FC = () => {
 
 const NavBar: React.FC = () => {
   const classes = useStyles();
+  
   return (
     <Grid container spacing={0} className={classes.navbar}>
       <Grid item xs={2} className={classes.navcolor}>

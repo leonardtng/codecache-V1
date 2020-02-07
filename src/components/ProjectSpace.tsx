@@ -7,18 +7,20 @@ import projectList from '../data/projectList';
 const useStyles = makeStyles({
   cardspace: {
     position: 'relative',
-    top: '300px',
+    top: '300px'
   },
 });
 
 
 const ProjectSpace: React.FC = () => {
   const classes = useStyles();
+
   const ProjectItems = projectList.map((project) =>
     <Grid item xs={4} key={project.id.toString()}>
-      <ProjectCard id={project.id} img={project.img} name={project.name} />
+      <ProjectCard img={project.img} name={project.name} />
     </Grid>
   );
+  
   return (
     <Grid container spacing={0} className={classes.cardspace}>
       {ProjectItems}
