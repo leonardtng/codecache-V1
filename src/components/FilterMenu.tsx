@@ -48,6 +48,8 @@ const DisplayFilterMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
         horizontal: 'left',
       }}
     >
+      <MenuItem className={classes.menuitemstyle}>Popular</MenuItem>
+      <MenuItem className={classes.menuitemstyle}>Recently Added</MenuItem>
       <MenuItem className={classes.menuitemstyle}>Commits</MenuItem>
       <MenuItem className={classes.menuitemstyle}>Likes</MenuItem>
       <MenuItem className={classes.menuitemstyle}>Views</MenuItem>

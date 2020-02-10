@@ -22,19 +22,19 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-  editName: (name: string) => void;
+  editDisplayName: (newDisplayName: string) => void;
   editDescription: (description: string) => void;
 }
 
-const EditProfile: React.FC<Props> = ({ editName, editDescription }) => {
+const EditProfile: React.FC<Props> = ({ editDisplayName, editDescription }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [newName, setNewName] = useState("");
+  const [newDisplayName, setNewDisplayName] = useState("");
   const [newDescription, setNewDescription] = useState("");
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    editName(newName);
+    editDisplayName(newDisplayName);
     editDescription(newDescription);
     setOpen(false);
   }
@@ -71,7 +71,7 @@ const EditProfile: React.FC<Props> = ({ editName, editDescription }) => {
               label="Name"
               autoComplete="off"
               variant="outlined"
-              onChange={(e) => { setNewName(e.target.value) }}
+              onChange={(e) => { setNewDisplayName(e.target.value) }}
             />
             <TextField
               id="description"

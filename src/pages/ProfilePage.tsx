@@ -73,8 +73,8 @@ const ProfilePage: React.FC = () => {
         <Grid item xs={11}>
         </Grid>
       </Grid>
-      <userState.Consumer>{({ username, name, setName, description, setDescription }) => {
-        return <ProfileProjectSpace username={username} name={name} setName= {setName} description={description} setDescription={setDescription} />
+      <userState.Consumer>{({ username, displayName, setDisplayName, description, setDescription }) => {
+        return <ProfileProjectSpace username={username} displayName={displayName} setDisplayName= {setDisplayName} description={description} setDescription={setDescription} />
       }}
       </userState.Consumer>
     </div>

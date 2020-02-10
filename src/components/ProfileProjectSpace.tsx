@@ -14,13 +14,13 @@ const useStyles = makeStyles({
 
 interface Props {
   username: string;
-  name: string;
-  setName: (newName: string) => void;
+  displayName: string;
+  setDisplayName: (newDisplayName: string) => void;
   description: string;
   setDescription: (newDescription: string) => void;
 }
 
-const ProfileProjectSpace: React.FC<Props> = ({ username, name, setName, description, setDescription}) => {
+const ProfileProjectSpace: React.FC<Props> = ({ username, displayName, setDisplayName, description, setDescription}) => {
   const classes = useStyles();
 
   const ProjectItems = projectList.map((project) => {
@@ -36,7 +36,7 @@ const ProfileProjectSpace: React.FC<Props> = ({ username, name, setName, descrip
   return (
     <Grid container spacing={0}>
       <Grid item xs={4} className={classes.adjustcard} >
-        <ProfileCard name={name} setName={setName} description={description} setDescription={setDescription} projectCommits={10} totalProjectViews={200} totalLikes={30} />
+        <ProfileCard displayName={displayName} setDisplayName={setDisplayName} description={description} setDescription={setDescription} projectCommits={10} totalProjectViews={200} totalLikes={30} />
       </Grid>
       <Grid item xs={8} className={classes.adjustcard}>
         <Grid container spacing={0}>

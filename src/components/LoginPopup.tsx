@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Popup: React.FC = () => {
+const LoginPopup: React.FC = () => {
   const classes = useStyles();
   
   return (
@@ -53,4 +53,4 @@ const Popup: React.FC = () => {
   );
 }
 
-export default Popup;
+export default LoginPopup;

@@ -45,8 +45,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-  name: string;
-  setName: (newName: string) => void;
+  displayName: string;
+  setDisplayName: (newDisplayName: string) => void;
   description: string;
   setDescription: (newDescription: string) => void;
   projectCommits: number;
@@ -54,38 +54,26 @@ interface Props {
   totalLikes: number;
 }
 
-const ProfileCard: React.FC<Props> = ({ name, setName, description, setDescription, projectCommits, totalProjectViews, totalLikes }) => {
+const ProfileCard: React.FC<Props> = ({ displayName, setDisplayName, description, setDescription, projectCommits, totalProjectViews, totalLikes }) => {
   const classes = useStyles();
-  // const [name, setName] = useState('Serene Tay');
-  // const [description, setDescription] = useState('Currently working in a fintech company and learning about IT. I can code in Python, Javascript, PHP, C++, C#, HTML, CSS. Looking for part-time opportunities for me to practice my skills.')
-
-  // const editName = (name: string) => {
-  //   setName(name);
-  //   //pass newName from children to this function as name and set parent name prop
-  // };
-
-  // const editDescription = (description: string) => {
-  //   setDescription(description);
-  //   //pass newDescription from children to this function as description and set parent name prop
-  // };
 
   return (
     <div className={classes.cardoutline}>
       <Card className={classes.card}>
         <div className={classes.imagesectionheight}>
           <CardActionArea>
-            <Avatar alt={name} src={ProfileImage} className={classes.avatarlarge} />
+            <Avatar alt={displayName} src={ProfileImage} className={classes.avatarlarge} />
           </CardActionArea>
         </div>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {name}
+            {displayName}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {description}
           </Typography>
           <div className={classes.alignright}>
-            <EditProfile editName={setName} editDescription={setDescription} />
+            <EditProfile editDisplayName={setDisplayName} editDescription={setDescription} />
           </div>
         </CardContent>
         <CardContent>
