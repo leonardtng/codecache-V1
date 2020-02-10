@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ProfileProjectSpace from '../components/ProfileProjectSpace';
 import { useHistory } from "react-router-dom";
 import HeaderIcons from '../components/HeaderIcons';
+import { userState } from '../contexts/UserState';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -72,7 +73,10 @@ const ProfilePage: React.FC = () => {
         <Grid item xs={11}>
         </Grid>
       </Grid>
-      <ProfileProjectSpace />
+      <userState.Consumer>{({ username, name, setName, description, setDescription }) => {
+        return <ProfileProjectSpace username={username} name={name} setName= {setName} description={description} setDescription={setDescription} />
+      }}
+      </userState.Consumer>
     </div>
   );
 }

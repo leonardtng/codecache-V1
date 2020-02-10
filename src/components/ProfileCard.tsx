@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ProfileImage from '../images/ProfileImage.png'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -45,25 +45,29 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
+  name: string;
+  setName: (newName: string) => void;
+  description: string;
+  setDescription: (newDescription: string) => void;
   projectCommits: number;
   totalProjectViews: number;
   totalLikes: number;
 }
 
-const ProfileCard: React.FC<Props> = ({ projectCommits, totalProjectViews, totalLikes }) => {
+const ProfileCard: React.FC<Props> = ({ name, setName, description, setDescription, projectCommits, totalProjectViews, totalLikes }) => {
   const classes = useStyles();
-  const [name, setName] = useState('Serene Tay');
-  const [description, setDescription] = useState('Currently working in a fintech company and learning about IT. I can code in Python, Javascript, PHP, C++, C#, HTML, CSS. Looking for part-time opportunities for me to practice my skills.')
+  // const [name, setName] = useState('Serene Tay');
+  // const [description, setDescription] = useState('Currently working in a fintech company and learning about IT. I can code in Python, Javascript, PHP, C++, C#, HTML, CSS. Looking for part-time opportunities for me to practice my skills.')
 
-  const editName = (name: string) => {
-    setName(name);
-    //pass newName from children to this function as name and set parent name prop
-  };
+  // const editName = (name: string) => {
+  //   setName(name);
+  //   //pass newName from children to this function as name and set parent name prop
+  // };
 
-  const editDescription = (description: string) => {
-    setDescription(description);
-    //pass newDescription from children to this function as description and set parent name prop
-  };
+  // const editDescription = (description: string) => {
+  //   setDescription(description);
+  //   //pass newDescription from children to this function as description and set parent name prop
+  // };
 
   return (
     <div className={classes.cardoutline}>
@@ -81,7 +85,7 @@ const ProfileCard: React.FC<Props> = ({ projectCommits, totalProjectViews, total
             {description}
           </Typography>
           <div className={classes.alignright}>
-            <EditProfile editName={editName} editDescription={editDescription} />
+            <EditProfile editName={setName} editDescription={setDescription} />
           </div>
         </CardContent>
         <CardContent>
