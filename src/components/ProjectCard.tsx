@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import LoginAlert from './LoginAlert';
+import HandleDescription from './HandleDescription';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import MergeTypeIcon from '@material-ui/icons/MergeType';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import Typography from '@material-ui/core/Typography';
 import { userState } from '../contexts/UserState';
 
 const useStyles = makeStyles({
@@ -29,26 +28,26 @@ const useStyles = makeStyles({
     maxWidth: 500,
     margin: 'auto',
   },
-  media: {
-    height: 300,
+  nopadding: {
+    padding: 0,
   },
-  iconlabel: {
-    display: 'flex',
-    alignItems: 'left',
-  }
 });
+
 
 interface Props {
   id: number;
   img: string;
   name: string;
+  description: string;
   commits: number;
   views: number;
   likes: number;
 }
 
-const ProjectCard: React.FC<Props> = ({ id, img, name, commits, views, likes }) => {
+const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, views, likes }) => {
   const classes = useStyles();
+
+  const [showDescription, setShowDescription] = useState(false);
 
   const [color, setColor] = useState("#8f8f8f");
   const [currentLikes, setCurrentLikes] = useState(likes);
@@ -67,21 +66,10 @@ const ProjectCard: React.FC<Props> = ({ id, img, name, commits, views, likes }) 
 
   return (
     <div className={classes.cardoutline}>
-      <Card className={classes.card}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={img}
-            title={name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
-            </Typography>
+      <Card className={classes.card} >
+        <CardActionArea onMouseEnter={() => setShowDescription(true)} onMouseLeave={() => setShowDescription(false)}>
+          <CardContent classes={{ root: classes.nopadding }}>
+            <HandleDescription img={img} name={name} description={description} showDescription={showDescription}/>
           </CardContent>
         </CardActionArea>
         <CardActions>

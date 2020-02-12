@@ -17,7 +17,7 @@ const ProjectSpace: React.FC = () => {
 
   const ProjectItems = projectList.map((project) =>
     <Grid item xs={4} key={project.id.toString()}>
-      <ProjectCard id={project.id} img={project.img} name={project.name} commits={project.commits} views={project.views} likes={project.likes} />
+      <ProjectCard id={project.id} img={project.img} name={project.name} description={project.description} commits={project.commits} views={project.views} likes={project.likes} />
     </Grid>
   );
   
