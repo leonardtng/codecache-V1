@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import LoginAlert from './LoginAlert';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card';
@@ -11,6 +12,7 @@ import MergeTypeIcon from '@material-ui/icons/MergeType';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import Typography from '@material-ui/core/Typography';
+import { userState } from '../contexts/UserState';
 
 const useStyles = makeStyles({
   cardoutline: {
@@ -30,15 +32,38 @@ const useStyles = makeStyles({
   media: {
     height: 300,
   },
+  iconlabel: {
+    display: 'flex',
+    alignItems: 'left',
+  }
 });
 
 interface Props {
+  id: number;
   img: string;
   name: string;
+  commits: number;
+  views: number;
+  likes: number;
 }
 
-const ProjectCard: React.FC<Props> = (props) => {
+const ProjectCard: React.FC<Props> = ({ id, img, name, commits, views, likes }) => {
   const classes = useStyles();
+
+  const [color, setColor] = useState("#8f8f8f");
+  const [currentLikes, setCurrentLikes] = useState(likes);
+
+  const handleClickLike = () => {
+    if (color === "#8f8f8f") {
+      setColor("red");
+      setCurrentLikes(currentLikes + 1);
+    }
+    else {
+      setColor("#8f8f8f");
+      setCurrentLikes(currentLikes - 1);
+    }
+    // Need to update the likes in the project in the database
+  };
 
   return (
     <div className={classes.cardoutline}>
@@ -46,12 +71,12 @@ const ProjectCard: React.FC<Props> = (props) => {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={props.img}
-            title={props.name}
+            image={img}
+            title={name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.name}
+              {name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
@@ -60,21 +85,37 @@ const ProjectCard: React.FC<Props> = (props) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Grid item xs={2}>
-            <MergeTypeIcon />
-            <span>100</span>
-            {/* WORK ON THE LOGIC */}
+          <Grid item xs={1}>
+            <IconButton aria-label="commits" disabled>
+              <MergeTypeIcon />
+            </IconButton>
           </Grid>
-          <Grid item xs={2}>
-            <VisibilityIcon />
-            <span>100</span>
+          <Grid item xs={1}>
+            {commits}
+          </Grid>
+          <Grid item xs={1}>
+            <IconButton aria-label="views" disabled>
+              <VisibilityIcon />
+            </IconButton>
+          </Grid>
+          <Grid item xs={1}>
+            {views}
           </Grid>
           <Grid item xs={6}>
           </Grid>
-          <Grid item xs={2}>
-            <IconButton aria-label="like" edge="end">
-              <ThumbUpAltIcon />
-            </IconButton>
+          <Grid item xs={1}>
+            <userState.Consumer>{({ isLoggedIn }) => {
+              if (isLoggedIn) {
+                return <IconButton aria-label="likes" style={{ color: color }} onClick={handleClickLike}>
+                  <ThumbUpAltIcon />
+                </IconButton>
+              }
+              return <LoginAlert color={color} />
+            }}
+            </userState.Consumer>
+          </Grid>
+          <Grid item xs={1}>
+            {currentLikes}
           </Grid>
         </CardActions>
       </Card>

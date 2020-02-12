@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Popup from './LoginPopup';
+import LoginPopup from './LoginPopup';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -35,7 +35,7 @@ const PopupConditional: React.FC<Props> = ({ showPopup, setShowPopup }) => {
 
   if (showPopup) {
     return <div className={classes.popupbg} onClick={setShowPopup}>
-      <Popup />
+      <LoginPopup />
     </div>
   }
   return null

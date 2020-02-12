@@ -38,7 +38,7 @@ const LoginPopup: React.FC = () => {
   
   return (
     <div className={classes.root}>
-      <userState.Consumer>{({ isLoggedIn, toggleLogin }) => (
+      <userState.Consumer>{({ toggleLogin }) => (
         <div className={classes.popup}>
           <Button className={classes.ghlogin} variant="contained" color="primary" onClick={toggleLogin}>
             Login with Github

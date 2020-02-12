@@ -22,7 +22,7 @@ const UserState: React.FC = (props) => {
 
   let [description, setDescription] = useState(
     'Currently working in a fintech company and learning about IT. I can code in Python, Javascript, PHP, C++, C#, HTML, CSS. Looking for part-time opportunities for me to practice my skills.'
-    ); //Get from github
+    ); //Get from github?
   let changeDescription = (newDescription: string) => { setDescription(newDescription) };
 
   return (
