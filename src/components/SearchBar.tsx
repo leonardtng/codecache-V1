@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -15,11 +15,22 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const SearchBar: React.FC = () => {
+interface Props {
+  handleSearch: (search: string) => void;
+}
+
+const SearchBar: React.FC<Props> = ({ handleSearch }) => {
   const classes = useStyles();
-  
+
+  const [search, setSearch] = useState('');
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    handleSearch(search);
+  }
+
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
       <TextField id="outlined-search" label="Search" type="search" variant="outlined" InputProps={{
         endAdornment: (
           <InputAdornment position="end">
@@ -27,6 +38,8 @@ const SearchBar: React.FC = () => {
           </InputAdornment>
         ),
       }}
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
       />
     </form>
   );

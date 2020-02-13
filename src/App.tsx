@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ProjectSpace from './components/ProjectSpace';
 import NavBar from './components/NavBar';
@@ -15,10 +15,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const App: React.FC = () => {
   const classes = useStyles();
+
+  const [currentSearch, setCurrentSearch] = useState('');
+  const changeCurrentSearch = (search: string) => {
+    setCurrentSearch(search);
+  }
+
   return (
     <div className={classes.root}>
-      <NavBar />
-      <ProjectSpace />
+      <NavBar handleSearch={changeCurrentSearch}/>
+      <ProjectSpace currentSearch={currentSearch}/>
       <Footer />
     </div>
   );

@@ -6,15 +6,22 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   maxheight: {
-    maxHeight: '40vh',
+    maxHeight: '36vh',
   },
   media: {
     height: '36vh',
   },
+  background: {
+    height: '36vh',
+    opacity: 0.3,
+  },
   description: {
-    fontSize: '2.3vh',
+    transform: 'translate(0%, -92%)',
+    fontSize: '1.1vw',
+    textAlign: 'justify',
     padding: '2vh',
     height: '36vh',
+    color: '#5e5e5e',
   },
 });
 
@@ -38,9 +45,16 @@ const HandleDescription: React.FC<Props> = ({ img, name, description, showDescri
 
   if (showDescription) {
     return <Fade in={showDescription} timeout={350}>
-      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-        {modifyDescription(description)}
-      </Typography>
+      <div className={classes.maxheight}>
+        <CardMedia
+          className={classes.background}
+          image={img}
+          title={name}
+        />
+        <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
+          {modifyDescription(description)}
+        </Typography>
+      </div>
     </Fade>
 
   } return (
@@ -50,9 +64,7 @@ const HandleDescription: React.FC<Props> = ({ img, name, description, showDescri
         image={img}
         title={name}
       />
-      <Typography variant="h5" component="h2">
-        {name}
-      </Typography>
+
     </div >
   );
 }

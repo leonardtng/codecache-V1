@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
@@ -69,9 +70,12 @@ const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, vie
       <Card className={classes.card} >
         <CardActionArea onMouseEnter={() => setShowDescription(true)} onMouseLeave={() => setShowDescription(false)}>
           <CardContent classes={{ root: classes.nopadding }}>
-            <HandleDescription img={img} name={name} description={description} showDescription={showDescription}/>
+            <HandleDescription img={img} name={name} description={description} showDescription={showDescription} />
           </CardContent>
         </CardActionArea>
+        <Typography variant="h5" component="h2">
+              {name}
+            </Typography>
         <CardActions>
           <Grid item xs={1}>
             <IconButton aria-label="commits" disabled>

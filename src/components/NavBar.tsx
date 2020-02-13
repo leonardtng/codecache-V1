@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+
+
 const Logo: React.FC = () => {
   const classes = useStyles();
   let history = useHistory();
@@ -39,7 +41,11 @@ const Logo: React.FC = () => {
   );
 }
 
-const NavBar: React.FC = () => {
+interface Props {
+  handleSearch: (search: string) => void;
+}
+
+const NavBar: React.FC<Props> = ({ handleSearch }) => {
   const classes = useStyles();
   
   return (
@@ -51,7 +57,7 @@ const NavBar: React.FC = () => {
       </Grid>
       <HeaderIcons />
       <Grid item xs={12}>
-        <SearchBar />
+        <SearchBar handleSearch={handleSearch}/>
       </Grid>
       <CourseFilter />
     </Grid>
