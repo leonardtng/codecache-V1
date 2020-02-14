@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       textAlign: 'center',
     },
+    translate: {
+      transform: 'translate(0, 36vh)',
+    },
   }),
 );
 
@@ -23,9 +26,11 @@ const App: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <NavBar handleSearch={changeCurrentSearch}/>
-      <ProjectSpace currentSearch={currentSearch}/>
-      <Footer />
+      <NavBar handleSearch={changeCurrentSearch} />
+      <div className={classes.translate}>
+        <ProjectSpace currentSearch={currentSearch} />
+        <Footer />
+      </div>
     </div>
   );
 }

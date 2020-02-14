@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     position: 'relative',
     width: '100%',
     maxHeight: '75px',
-    bottom: '-35vh',
+    bottom: '0',
   },
   footerstyle: {
     textAlign: "center",

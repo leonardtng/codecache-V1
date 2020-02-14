@@ -73,7 +73,7 @@ const ProfileCard: React.FC<Props> = ({ displayName, setDisplayName, description
             {description}
           </Typography>
           <div className={classes.alignright}>
-            <EditProfile editDisplayName={setDisplayName} editDescription={setDescription} />
+            <EditProfile displayName={displayName} description={description} editDisplayName={setDisplayName} editDescription={setDescription} />
           </div>
         </CardContent>
         <CardContent>

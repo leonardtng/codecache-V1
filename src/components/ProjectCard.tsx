@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import LoginAlert from './LoginAlert';
 import HandleDescription from './HandleDescription';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import MergeTypeIcon from '@material-ui/icons/MergeType';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -34,6 +35,15 @@ const useStyles = makeStyles({
   },
 });
 
+const HtmlTooltip = withStyles((theme: Theme) => ({
+  tooltip: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    border: '1px solid #dadde9',
+  },
+}))(Tooltip);
 
 interface Props {
   id: number;
@@ -74,21 +84,43 @@ const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, vie
           </CardContent>
         </CardActionArea>
         <Typography variant="h5" component="h2">
-              {name}
-            </Typography>
+          {name}
+        </Typography>
         <CardActions>
           <Grid item xs={1}>
-            <IconButton aria-label="commits" disabled>
-              <MergeTypeIcon />
-            </IconButton>
+            <HtmlTooltip
+              title={
+                <React.Fragment>
+                  <Typography color="inherit">Commits</Typography>
+                  <em>{"Number of individual changes contributed to the project"}</em>
+                </React.Fragment>
+              }
+            >
+              <div>
+                <IconButton aria-label="commits" disabled>
+                  <MergeTypeIcon />
+                </IconButton>
+              </div>
+            </HtmlTooltip>
           </Grid>
           <Grid item xs={1}>
             {commits}
           </Grid>
           <Grid item xs={1}>
-            <IconButton aria-label="views" disabled>
-              <VisibilityIcon />
-            </IconButton>
+            <HtmlTooltip
+              title={
+                <React.Fragment>
+                  <Typography color="inherit">Views</Typography>
+                  <em>{"Number of accounts that has viewed this project"}</em>
+                </React.Fragment>
+              }
+            >
+              <div>
+                <IconButton aria-label="views" disabled>
+                  <VisibilityIcon />
+                </IconButton>
+              </div>
+            </HtmlTooltip>
           </Grid>
           <Grid item xs={1}>
             {views}

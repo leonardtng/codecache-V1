@@ -24,13 +24,13 @@ const SearchBar: React.FC<Props> = ({ handleSearch }) => {
 
   const [search, setSearch] = useState('');
 
-  const handleSubmit = (e: any) => {
+  const handleChange = (e: any) => {
     e.preventDefault();
     handleSearch(search);
   }
 
   return (
-    <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
+    <form className={classes.root} noValidate autoComplete="off" onSubmit={handleChange}>
       <TextField id="outlined-search" label="Search" type="search" variant="outlined" InputProps={{
         endAdornment: (
           <InputAdornment position="end">

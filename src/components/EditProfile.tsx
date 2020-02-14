@@ -22,15 +22,17 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
+  displayName: string;
+  description: string;
   editDisplayName: (newDisplayName: string) => void;
   editDescription: (description: string) => void;
 }
 
-const EditProfile: React.FC<Props> = ({ editDisplayName, editDescription }) => {
+const EditProfile: React.FC<Props> = ({ displayName, description, editDisplayName, editDescription }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [newDisplayName, setNewDisplayName] = useState("");
-  const [newDescription, setNewDescription] = useState("");
+  const [newDisplayName, setNewDisplayName] = useState(displayName);
+  const [newDescription, setNewDescription] = useState(description);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -71,6 +73,7 @@ const EditProfile: React.FC<Props> = ({ editDisplayName, editDescription }) => {
               label="Name"
               autoComplete="off"
               variant="outlined"
+              defaultValue={newDisplayName}
               onChange={(e) => { setNewDisplayName(e.target.value) }}
             />
             <TextField
@@ -79,6 +82,7 @@ const EditProfile: React.FC<Props> = ({ editDisplayName, editDescription }) => {
               inputProps={{ maxLength: 500 }} multiline={true}
               rows="4"
               variant="outlined"
+              defaultValue={newDescription}
               onChange={(e) => { setNewDescription(e.target.value) }}
               helperText={handleCombine(newDescription, "/500")}
             />
