@@ -27,8 +27,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
-
 const Logo: React.FC = () => {
   const classes = useStyles();
   let history = useHistory();

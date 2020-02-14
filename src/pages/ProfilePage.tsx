@@ -35,8 +35,8 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '1vw',
     },
     largeFont: {
+      textAlign: 'right',
       fontSize: "x-large",
-      height: "4vw",
     },
   }),
 );
