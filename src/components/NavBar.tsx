@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: 1,
     },
     navcolor: {
-      backgroundColor: '#23343B',
+      backgroundColor: '#333333',
     },
   }),
 );
@@ -40,23 +40,24 @@ const Logo: React.FC = () => {
 }
 
 interface Props {
-  handleSearch: (search: string) => void;
+  currentSearch: string;
+  changeCurrentSearch: (search: string) => void;
 }
 
-const NavBar: React.FC<Props> = ({ handleSearch }) => {
+const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
   const classes = useStyles();
-  
+
   return (
     <Grid container spacing={0} className={classes.navbar}>
       <Grid item xs={2} className={classes.navcolor}>
         <Logo />
       </Grid>
-      <Grid item xs={8} className={classes.navcolor}>
+      <Grid item xs={3} className={classes.navcolor}>
+        <SearchBar currentSearch={currentSearch} changeCurrentSearch={changeCurrentSearch} />
+      </Grid>
+      <Grid item xs={5} className={classes.navcolor}>
       </Grid>
       <HeaderIcons />
-      <Grid item xs={12}>
-        <SearchBar handleSearch={handleSearch}/>
-      </Grid>
       <CourseFilter />
     </Grid>
   );

@@ -9,7 +9,7 @@ import { userState } from '../contexts/UserState';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     navcolor: {
-      backgroundColor: '#23343B',
+      backgroundColor: '#333333',
     },
     icongroup: {
       marginLeft: '7vw',

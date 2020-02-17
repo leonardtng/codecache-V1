@@ -5,6 +5,7 @@ import CourseButtons from './CourseButtons';
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import FilterBox from './FilterBox';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,17 +27,24 @@ const CourseFilter: React.FC = () => {
       <Grid item xs={11}>
       </Grid>
       <Grid item xs={1}>
+      </Grid>
+      <Grid item xs={1}>
         <IconButton>
           <ArrowBackIosIcon />
         </IconButton>
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs={5}>
         <CourseButtons />
       </Grid>
       <Grid item xs={1}>
         <IconButton>
           <ArrowForwardIosIcon />
         </IconButton>
+      </Grid>
+      <Grid item xs={2}>
+        <FilterBox/>
+      </Grid>
+      <Grid item xs={2}>
       </Grid>
       <Grid item xs={12}>
       </Grid>
