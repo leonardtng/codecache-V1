@@ -49,13 +49,13 @@ const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
 
   return (
     <Grid container spacing={0} className={classes.navbar}>
-      <Grid item xs={2} className={classes.navcolor}>
+      <Grid item xs={1} className={classes.navcolor}>
         <Logo />
       </Grid>
-      <Grid item xs={3} className={classes.navcolor}>
+      <Grid item xs={2} className={classes.navcolor}>
         <SearchBar currentSearch={currentSearch} changeCurrentSearch={changeCurrentSearch} />
       </Grid>
-      <Grid item xs={5} className={classes.navcolor}>
+      <Grid item xs={7} className={classes.navcolor}>
       </Grid>
       <HeaderIcons />
       <CourseFilter />

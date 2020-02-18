@@ -19,7 +19,7 @@ const ProfileButton: React.FC = () => {
   const handleClick = () => { history.push("./profile") };
   
   return (
-    <IconButton onClick={handleClick}>
+    <IconButton size="small" onClick={handleClick}>
       <AccountCircleIcon className={classes.iconstyle} fontSize="large" />
     </IconButton>
   );

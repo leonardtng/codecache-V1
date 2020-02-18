@@ -24,8 +24,8 @@ const ProjectSpace: React.FC<Props> = ({ currentSearch }) => {
       return <Box height={'71vh'}>
       </Box>
     }
-    if (project.name.toLowerCase().includes(currentSearch.toLowerCase())) {
-      return <Grid item xs={4} key={project.id.toString()}>
+    else if (project.name.toLowerCase().includes(currentSearch.toLowerCase())) {
+      return <Grid item xs={12} sm={4} key={project.id.toString()}>
         <ProjectCard id={project.id} img={project.img} name={project.name} description={project.description} commits={project.commits} views={project.views} likes={project.likes} />
       </Grid>
     }

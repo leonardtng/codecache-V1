@@ -10,27 +10,18 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& .MuiTextField-root': {
-        margin: theme.spacing(3),
+        margin: theme.spacing(1),
         width: 246,
       },
+      '& .MuiInputBase-root': {
+        fontSize: '15px',
+      },
+      '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-endAdornment': {
+        transform: 'translateY(-9%)',
+      },
     },
-    button: {
-      fontSize: 13,
-      width: '100%',
-      textAlign: 'left',
-      paddingBottom: 8,
-      color: '#586069',
-      fontWeight: 600,
-      '&:hover,&:focus': {
-        color: '#0366d6',
-      },
-      '& span': {
-        width: '100%',
-      },
-      '& svg': {
-        width: 16,
-        height: 16,
-      },
+    paper: {
+      fontSize: '15px',
     },
   }),
 );
@@ -38,13 +29,13 @@ const useStyles = makeStyles((theme: Theme) =>
 const useOutlinedInputStyles = makeStyles(theme => ({
   root: {
     "& .MuiOutlinedInput-root": {
-      backgroundColor: "#646464",
+      backgroundColor: '#646464',
     },
     "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#000000",
+      borderColor: '#000000',
     },
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#ffffff",
+      borderColor: '#ffffff',
     },
   }
 }));
@@ -71,6 +62,7 @@ const SearchBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
     <Autocomplete
       id="Search"
       className={classes.root}
+      classes={{ paper: classes.paper }}
       options={projectList}
       disableOpenOnFocus
       size='small'
@@ -79,7 +71,7 @@ const SearchBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
       autoHighlight
       getOptionLabel={option => option.name}
       renderInput={params => (
-        <TextField {...params} className={textfieldStyle.root} placeholder="Search..." variant="outlined"
+        <TextField {...params} style={{ height: '36px' }} className={textfieldStyle.root} placeholder="Search..." variant="outlined"
           value={search}
           onChange={(e) => {
             e.preventDefault();
@@ -94,8 +86,7 @@ const SearchBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
         //   ),
         // }}
         />
-      )
-      }
+      )}
     />
   );
 }

@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& > *': {
-        margin: theme.spacing(2),
+        margin: theme.spacing(1),
       },
     },
     popupbg: {
@@ -47,7 +47,7 @@ const LoginButton: React.FC = () => {
   
   return (
     <div className={classes.root}>
-      <Button variant="contained" color="secondary" onClick={() => setShowPopup(showPopup = true)}>
+      <Button variant="contained" color="secondary" size="small" onClick={() => setShowPopup(showPopup = true)}>
         Login / Signup
       </Button>
       <PopupConditional showPopup={showPopup} setShowPopup={() => setShowPopup(showPopup = false)} />

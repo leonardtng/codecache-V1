@@ -81,7 +81,7 @@ const MenuButton = () => {
   
   return (
     <span>
-      <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>
+      <IconButton aria-controls="menu" aria-haspopup="true" size="small" onClick={handleClick}>
         <MenuIcon className={classes.iconstyle} fontSize="large" />
       </IconButton>
       <DisplayMenu anchorEl={anchorEl} handleClose={handleClose} />
