@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
-        width: 246,
+        width: '22vw',
       },
       '& .MuiInputBase-root': {
         fontSize: '15px',
@@ -32,7 +32,8 @@ const useOutlinedInputStyles = makeStyles(theme => ({
       backgroundColor: '#646464',
     },
     "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: '#000000',
+      borderColor: '#f50057',
+      borderWidth: '2px'
     },
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
       borderColor: '#ffffff',
@@ -62,7 +63,7 @@ const SearchBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
       autoHighlight
       getOptionLabel={option => option.name}
       renderInput={params => (
-        <TextField {...params} style={{ height: '36px' }} className={textfieldStyle.root} placeholder="Search..." variant="outlined"
+        <TextField {...params} className={textfieldStyle.root} placeholder="Search..." variant="outlined"
           value={currentSearch}
           onChange={(event) => {
             event.preventDefault();

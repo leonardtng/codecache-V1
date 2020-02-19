@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
 import HeaderIcons from './HeaderIcons';
-import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,11 +30,9 @@ const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
   return (
     <Grid container spacing={0} className={classes.navbar}>
       <Grid item xs={1} className={classes.navcolor}>
-        <Box borderRight={0}>
         <Logo />
-        </Box>
       </Grid>
-      <Grid item xs={2} className={classes.navcolor}>
+      <Grid item xs={3} className={classes.navcolor}>
         <SearchBar currentSearch={currentSearch} changeCurrentSearch={changeCurrentSearch} />
       </Grid>
       <Grid item xs={7} className={classes.navcolor}>

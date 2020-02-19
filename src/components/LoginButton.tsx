@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       '& > *': {
         margin: theme.spacing(1),
+        fontSize: '70%',
       },
     },
     popupbg: {

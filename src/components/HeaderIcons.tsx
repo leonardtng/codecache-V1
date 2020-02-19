@@ -21,7 +21,7 @@ const HeaderIcons = () => {
   const classes = useStyles();
   
   return (
-    <Grid item xs={2} className={classes.navcolor}>
+    <Grid item xs={1} className={classes.navcolor}>
       <userState.Consumer>{({ isLoggedIn, toggleLogin }) => {
         if (isLoggedIn) {
           return <span className={classes.icongroup}>
