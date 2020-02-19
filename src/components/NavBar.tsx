@@ -1,20 +1,13 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import logo from '../images/Codecache.svg';
+import Logo from './Logo';
 import SearchBar from './SearchBar';
-import CourseFilter from './CourseFilter';
 import HeaderIcons from './HeaderIcons';
-import { useHistory } from "react-router-dom";
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    logostyle: {
-      width: '85%',
-      height: '85%',
-      objectFit: 'contain',
-    },
     navbar: {
       position: 'fixed',
       width: '100%',
@@ -27,18 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Logo: React.FC = () => {
-  const classes = useStyles();
-  let history = useHistory();
-  const handleClick = () => { history.push("/") }
-
-  return (
-    <IconButton className={classes.logostyle} onClick={handleClick}>
-      <img src={logo} alt="codecache" />
-    </IconButton>
-  );
-}
-
 interface Props {
   currentSearch: string;
   changeCurrentSearch: (search: string) => void;
@@ -50,7 +31,9 @@ const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
   return (
     <Grid container spacing={0} className={classes.navbar}>
       <Grid item xs={1} className={classes.navcolor}>
+        <Box borderRight={0}>
         <Logo />
+        </Box>
       </Grid>
       <Grid item xs={2} className={classes.navcolor}>
         <SearchBar currentSearch={currentSearch} changeCurrentSearch={changeCurrentSearch} />
@@ -58,7 +41,6 @@ const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
       <Grid item xs={7} className={classes.navcolor}>
       </Grid>
       <HeaderIcons />
-      <CourseFilter />
     </Grid>
   );
 }

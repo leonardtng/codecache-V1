@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   cardoutline: {
     position: 'relative',
     zIndex: 0,
-    padding: "3vw",
+    padding: "5vh",
     '&:hover': {
       msTransform: 'translate(0px, -10px)',  /* IE 9 */
       webkitTransform: 'translate(0px, -10px)', /* Safari 3-8 */
