@@ -1,7 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,18 +16,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const ProfileButton: React.FC = () => {
+const AddProjectButton: React.FC = () => {
   const classes = useStyles();
-  let history = useHistory();
-  const handleClick = () => { history.push("./profile") };
-
   return (
     <span className={classes.buttonroot}>
-      <Button size="small" className={classes.iconstyle} onClick={handleClick}>
-        Profile
+      <Button size="small" className={classes.iconstyle}>
+        Add Project
       </Button>
     </span>
-  );
+  )
 }
 
-export default ProfileButton;
+export default AddProjectButton;

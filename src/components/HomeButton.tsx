@@ -17,18 +17,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const ProfileButton: React.FC = () => {
+const HomeButton: React.FC = () => {
   const classes = useStyles();
   let history = useHistory();
-  const handleClick = () => { history.push("./profile") };
+  const handleClick = () => { history.push("./") };
 
   return (
     <span className={classes.buttonroot}>
       <Button size="small" className={classes.iconstyle} onClick={handleClick}>
-        Profile
+        Home
       </Button>
     </span>
-  );
+  )
 }
 
-export default ProfileButton;
+export default HomeButton;

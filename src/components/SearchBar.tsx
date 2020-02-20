@@ -14,28 +14,28 @@ const useStyles = makeStyles((theme: Theme) =>
         width: '22vw',
       },
       '& .MuiInputBase-root': {
-        fontSize: '15px',
+        fontSize: '70%',
       },
       '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-endAdornment': {
         transform: 'translateY(-9%)',
       },
     },
     paper: {
-      fontSize: '15px',
+      fontSize: '70%',
     },
   }),
 );
 
 const useOutlinedInputStyles = makeStyles(theme => ({
   root: {
-    "& .MuiOutlinedInput-root": {
+    '& .MuiOutlinedInput-root': {
       backgroundColor: '#646464',
     },
-    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    '&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
       borderColor: '#f50057',
       borderWidth: '2px'
     },
-    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
       borderColor: '#ffffff',
     },
   }

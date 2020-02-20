@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
     <Grid container spacing={0} className={classes.footer}>
       <Grid item xs={12} className={classes.footerstyle}>
         <div className={classes.padding}>
-           © {year} Boogle Group Limited
+           © {year} CodeCache Limited
         </div>
       </Grid>
     </Grid>

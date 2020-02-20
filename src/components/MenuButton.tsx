@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from '@material-ui/icons/Menu';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { userState } from '../contexts/UserState';
@@ -9,9 +9,14 @@ import { useLocation, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      '& .MuiButtonBase-root': {
+        margin: '27% 0',
+        padding: '0',
+      },
+    },
     iconstyle: {
       color: '#ffffff',
-      padding: '7%',
     },
     menubg: {
       backgroundColor: '#E4E4E4',
@@ -80,9 +85,9 @@ const MenuButton = () => {
   };
   
   return (
-    <span>
-      <IconButton aria-controls="menu" aria-haspopup="true" size="small" onClick={handleClick}>
-        <MenuIcon className={classes.iconstyle} fontSize="large" />
+    <span className={classes.root}>
+      <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>
+        <MoreHorizIcon className={classes.iconstyle} fontSize="small" />
       </IconButton>
       <DisplayMenu anchorEl={anchorEl} handleClose={handleClose} />
     </span>

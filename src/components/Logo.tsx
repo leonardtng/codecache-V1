@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import logo from '../images/Codecache.svg';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -22,9 +22,9 @@ const Logo: React.FC = () => {
   const handleClick = () => { history.push("/") }
 
   return (
-    <IconButton className={classes.logostyle} onClick={handleClick}>
+    <Button className={classes.logostyle} onClick={handleClick}>
       <img src={logo} alt="codecache" />
-    </IconButton>
+    </Button>
   );
 }
 
