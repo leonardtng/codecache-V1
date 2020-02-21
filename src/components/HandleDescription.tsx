@@ -6,18 +6,18 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   maxheight: {
-    maxHeight: '36vh',
+    maxHeight: '12.5rem',
   },
   media: {
-    height: '36vh',
+    height: '12.5rem',
   },
   background: {
-    height: '36vh',
+    height: '12.5rem',
     opacity: 0.3,
   },
   description: {
-    transform: 'translate(0%, -92%)',
-    fontSize: '1.1vw',
+    transform: 'translate(0, -12.5rem)',
+    // fontSize: '2vh',
     textAlign: 'justify',
     padding: '2vh',
     height: '36vh',
@@ -36,8 +36,8 @@ const HandleDescription: React.FC<Props> = ({ img, name, description, showDescri
   const classes = useStyles();
 
   const modifyDescription = (description: any) => {
-    if (description.length > 450) {
-      var newDescription = description.slice(0, 446) + ' ...'
+    if (description.length > 275) {
+      var newDescription = description.slice(0, 270) + ' ...'
       return newDescription;
     };
     return description
@@ -64,7 +64,6 @@ const HandleDescription: React.FC<Props> = ({ img, name, description, showDescri
         image={img}
         title={name}
       />
-
     </div >
   );
 }

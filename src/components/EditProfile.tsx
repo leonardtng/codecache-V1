@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import { handleCombineTextLength } from '../utils/common';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -49,11 +50,6 @@ const EditProfile: React.FC<Props> = ({ displayName, description, editDisplayNam
     setOpen(false);
   };
 
-  const handleCombine = (param1: any, param2: any) => {
-    let param3 = param1.length;
-    return param3.toString().concat(param2);
-  }
-
   return (
     <React.Fragment>
       <Button variant="text" color="default" onClick={handleClickOpen}>
@@ -71,20 +67,23 @@ const EditProfile: React.FC<Props> = ({ displayName, description, editDisplayNam
             <TextField
               id="name"
               label="Name"
+              inputProps={{ maxLength: 500 }}
               autoComplete="off"
               variant="outlined"
               defaultValue={newDisplayName}
               onChange={(e) => { setNewDisplayName(e.target.value) }}
+              helperText={handleCombineTextLength(newDescription, "/50")}
             />
             <TextField
               id="description"
               label="Description"
               inputProps={{ maxLength: 500 }} multiline={true}
+              autoComplete="off"
               rows="4"
               variant="outlined"
               defaultValue={newDescription}
               onChange={(e) => { setNewDescription(e.target.value) }}
-              helperText={handleCombine(newDescription, "/500")}
+              helperText={handleCombineTextLength(newDescription, "/500")}
             />
           </form>
         </DialogContent>

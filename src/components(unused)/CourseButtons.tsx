@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import courseList from '../data/courseList';
+import tagsList from '../data/tagsList';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -27,9 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
 const CourseButtons: React.FC = () => {
   const classes = useStyles();
 
-  const courses = courseList.map((course) =>
+  const courses = tagsList.map((course) =>
     <Button variant="contained" color="primary" className={clsx(classes.root, classes.black)} key={course.id}>
-      {course.name}
+      {course.tag}
     </Button>
   );
   

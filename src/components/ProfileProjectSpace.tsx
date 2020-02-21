@@ -28,7 +28,7 @@ const ProfileProjectSpace: React.FC<Props> = ({ currentSearch, username, display
   const ProjectItems = projectList.map((project) => {
     if (project.owner === username) {
       if (project.name.toLowerCase().includes(currentSearch.toLowerCase())) {
-        return <Grid item xs={12} sm={6} key={project.id.toString()}>
+        return <Grid item xs={12} sm={4} key={project.id.toString()}>
           <ProjectCard id={project.id} img={project.img} name={project.name} description={project.description} commits={project.commits} views={project.views} likes={project.likes} />
         </Grid>
       }

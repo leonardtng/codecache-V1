@@ -1,5 +1,3 @@
-// Component not used
-
 import React, { useState } from 'react'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import IconButton from "@material-ui/core/IconButton";

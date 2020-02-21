@@ -33,6 +33,21 @@ const useStyles = makeStyles({
   nopadding: {
     padding: 0,
   },
+  fontsize: {
+    '& .MuiGrid-item': {
+      margin: 'auto',
+    },
+    '& .MuiSvgIcon-root': {
+      height: '125%',
+      width: '125%',
+    },
+    fontSize: '0.7rem',
+  },
+  likebutton: {
+    '& .MuiIconButton-root': {
+      padding: '2px 5px',
+    },
+  },
 });
 
 const HtmlTooltip = withStyles((theme: Theme) => ({
@@ -83,63 +98,65 @@ const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, vie
             <HandleDescription img={img} name={name} description={description} showDescription={showDescription} />
           </CardContent>
         </CardActionArea>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h6">
           {name}
         </Typography>
         <CardActions>
-          <Grid item xs={1}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Commits</Typography>
-                  <em>{"Number of individual changes contributed to the project"}</em>
-                </React.Fragment>
-              }
-            >
-              <div>
-                <IconButton aria-label="commits" disabled>
-                  <MergeTypeIcon />
-                </IconButton>
-              </div>
-            </HtmlTooltip>
-          </Grid>
-          <Grid item xs={1}>
-            {commits}
-          </Grid>
-          <Grid item xs={1}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Views</Typography>
-                  <em>{"Number of accounts that has viewed this project"}</em>
-                </React.Fragment>
-              }
-            >
-              <div>
-                <IconButton aria-label="views" disabled>
-                  <VisibilityIcon />
-                </IconButton>
-              </div>
-            </HtmlTooltip>
-          </Grid>
-          <Grid item xs={1}>
-            {views}
-          </Grid>
-          <Grid item xs={6}>
-          </Grid>
-          <Grid item xs={1}>
-            <userState.Consumer>{({ isLoggedIn }) => {
-              if (isLoggedIn) {
-                return <IconButton aria-label="likes" style={{ color: color }} onClick={handleClickLike}>
-                  <ThumbUpAltIcon />
-                </IconButton>
-              }
-              return <LoginAlert color={color} />
-            }}
-            </userState.Consumer>
-          </Grid>
-          <Grid item xs={1}>
-            {currentLikes}
+          <Grid container spacing={0} className={classes.fontsize}>
+            <Grid item xs={1}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">Commits</Typography>
+                    <em>{"Number of individual changes contributed to the project"}</em>
+                  </React.Fragment>
+                }
+              >
+                <div>
+                  <IconButton size="small" aria-label="commits" disabled>
+                    <MergeTypeIcon />
+                  </IconButton>
+                </div>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={1}>
+              {commits}
+            </Grid>
+            <Grid item xs={1}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">Views</Typography>
+                    <em>{"Number of accounts that has viewed this project"}</em>
+                  </React.Fragment>
+                }
+              >
+                <div>
+                  <IconButton size="small" aria-label="views" disabled>
+                    <VisibilityIcon />
+                  </IconButton>
+                </div>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={1}>
+              {views}
+            </Grid>
+            <Grid item xs={6}>
+            </Grid>
+            <Grid item xs={1} className={classes.likebutton}>
+              <userState.Consumer>{({ isLoggedIn }) => {
+                if (isLoggedIn) {
+                  return <IconButton size="small" aria-label="likes" style={{ color: color }} onClick={handleClickLike}>
+                    <ThumbUpAltIcon />
+                  </IconButton>
+                }
+                return <LoginAlert color={color} />
+              }}
+              </userState.Consumer>
+            </Grid>
+            <Grid item xs={1}>
+              {currentLikes}
+            </Grid>
           </Grid>
         </CardActions>
       </Card>

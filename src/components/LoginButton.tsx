@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
         margin: theme.spacing(1),
         fontSize: '16px',
         float: 'right',
-        marginRight: '3.5vw',
+        marginRight: '9.8%',
       },
     },
     popupbg: {
@@ -50,6 +50,7 @@ const PopupConditional: React.FC<Props> = ({ showPopup, setShowPopup }) => {
 
 const LoginButton: React.FC = () => {
   const classes = useStyles();
+  
   let [showPopup, setShowPopup] = useState(false);
   
   return (

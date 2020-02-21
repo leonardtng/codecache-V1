@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'center',
     },
     translate: {
-      transform: 'translate(0, 10vh)',
+      transform: 'translate(0, 8vh)',
     },
   }),
 );

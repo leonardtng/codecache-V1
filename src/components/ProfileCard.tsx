@@ -18,7 +18,7 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cardoutline: {
-      position: 'fixed',
+      position: 'relative',
       zIndex: 0,
       padding: '3vw',
     },

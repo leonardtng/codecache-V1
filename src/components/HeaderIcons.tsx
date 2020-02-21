@@ -46,15 +46,17 @@ const HeaderIcons: React.FC = () => {
             </Grid>
             <Grid item xs={4}>
               <Grid container spacing={0}>
-              <Grid item xs={4}>
-              <div className={classes.divider}></div>
-                <NotificationButton />
-              </Grid>
-              <Grid item xs={4}>
-                <MenuButton />
-              </Grid>
-              <Grid item xs={4}>
-              </Grid>
+                <Grid item xs={1}>
+                  <div className={classes.divider}></div>
+                </Grid>
+                <Grid item xs={4}>
+                  <NotificationButton />
+                </Grid>
+                <Grid item xs={4}>
+                  <MenuButton />
+                </Grid>
+                <Grid item xs={3}>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
