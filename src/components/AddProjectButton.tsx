@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { handleCombineTextLength } from '../utils/common';
+import ImageUpload from './ImageUpload';
 import Button from "@material-ui/core/Button";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -70,8 +71,8 @@ const AddProjectButton: React.FC = () => {
             <form className={classes.form}>
               <TextField
                 fullWidth
-                id="name"
-                label="Name"
+                id="title"
+                label="Title"
                 inputProps={{ maxLength: 50 }}
                 autoComplete="off"
                 variant="outlined"
@@ -97,7 +98,7 @@ const AddProjectButton: React.FC = () => {
                 onChange={(e) => { setDescription(e.target.value) }}
                 helperText={handleCombineTextLength(description, "/1000")}
               />
-              Upload Image
+              <ImageUpload />
               <Autocomplete
                 multiple
                 id="tags-standard"
