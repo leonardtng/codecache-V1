@@ -3,9 +3,8 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
-import Button from '@material-ui/core/Button';
-import TuneIcon from '@material-ui/icons/Tune';
 import HeaderIcons from './HeaderIcons';
+import FilterButton from './FilterButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,16 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '10px',
       float: 'left',
     },
-    filtericon: {
-      float: 'left',
-    },
-    buttonroot: {
-      '& .MuiButton-root': {
-        margin: '5.1%',
-        padding: '2.4% 0',
-        minWidth: '27%',
-      },
-    }
   }),
 );
 
@@ -55,11 +44,7 @@ const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
         <SearchBar currentSearch={currentSearch} changeCurrentSearch={changeCurrentSearch} />
       </Grid>
       <Grid item xs={1} className={classes.navcolor}>
-        <div className={classes.buttonroot}>
-          <Button className={classes.filtericon} variant="contained">
-            <TuneIcon />
-          </Button>
-        </div>
+        <FilterButton />
       </Grid>
       <Grid item xs={4} className={classes.navcolor}>
       </Grid>

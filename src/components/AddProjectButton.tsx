@@ -85,7 +85,7 @@ const AddProjectButton: React.FC = () => {
                 label="URL Link" 
                 autoComplete="off"
                 variant="outlined"
-                helperText='Github link to your repository' 
+                helperText='Link to your Git repository' 
               />
               <TextField
                 fullWidth
