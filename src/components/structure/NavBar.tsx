@@ -1,10 +1,10 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Logo from './Logo';
-import SearchBar from './SearchBar';
-import HeaderIcons from './HeaderIcons';
-import FilterButton from './FilterButton';
+import Logo from '../navigation/Logo';
+import SearchBar from '../navigation/SearchBar';
+import HeaderIcons from '../navigation/HeaderIcons';
+import FilterButton from '../navigation/FilterButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

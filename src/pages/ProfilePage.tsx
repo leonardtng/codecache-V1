@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import NavBar from '../components/navigation/NavBar';
+import NavBar from '../components/structure/NavBar';
 import ProfileProjectSpace from '../components/profile/ProfileProjectSpace';
 import { userState } from '../contexts/UserState';
-import Footer from '../components/Footer';
+import Footer from '../components/structure/Footer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

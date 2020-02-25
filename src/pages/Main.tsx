@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ProjectSpace from '../components/projects/ProjectSpace';
-import NavBar from '../components/navigation/NavBar';
-import Footer from '../components/Footer';
+import NavBar from '../components/structure/NavBar';
+import Footer from '../components/structure/Footer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
