@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileImage from '../images/ProfileImage.png'
+import ProfileImage from '../../images/ProfileImage.png'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';

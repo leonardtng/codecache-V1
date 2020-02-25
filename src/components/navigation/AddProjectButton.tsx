@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { handleCombineTextLength } from '../utils/common';
+import { handleCombineTextLength } from '../../utils/common';
 import ImageUpload from './ImageUpload';
 import Button from "@material-ui/core/Button";
 import Dialog from '@material-ui/core/Dialog';
@@ -10,7 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import tagsList from '../data/tagsList';
+import tagsList from '../../data/tagsList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

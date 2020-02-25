@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { userState } from '../contexts/UserState';
+import { userState } from '../../contexts/UserState';
 import { useLocation, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>

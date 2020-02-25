@@ -1,13 +1,13 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import LoginButton from './LoginButton';
+import LoginButton from '../login/LoginButton';
 import HomeButton from './HomeButton';
 import AddProjectButton from './AddProjectButton';
 import ProfileButton from './ProfileButton';
 import NotificationButton from './NotificationButton';
 import MenuButton from './MenuButton';
 import Grid from '@material-ui/core/Grid';
-import { userState } from '../contexts/UserState';
+import { userState } from '../../contexts/UserState';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

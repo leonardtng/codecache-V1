@@ -2,9 +2,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import ProfileCard from '../components/ProfileCard';
-import ProjectCard from '../components/ProjectCard';
-import projectList from '../data/projectList';
+import ProfileCard from './ProfileCard';
+import ProjectCard from '../projects/ProjectCard';
+import projectList from '../../data/projectList';
 
 const useStyles = makeStyles({
   adjustcard: {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import NavBar from '../components/NavBar';
-import ProfileProjectSpace from '../components/ProfileProjectSpace';
+import NavBar from '../components/navigation/NavBar';
+import ProfileProjectSpace from '../components/profile/ProfileProjectSpace';
 import { userState } from '../contexts/UserState';
 import Footer from '../components/Footer';
 

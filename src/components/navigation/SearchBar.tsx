@@ -4,7 +4,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 // import InputAdornment from '@material-ui/core/InputAdornment';
 // import SearchIcon from '@material-ui/icons/Search';
-import projectList from '../data/projectList';
+import projectList from '../../data/projectList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

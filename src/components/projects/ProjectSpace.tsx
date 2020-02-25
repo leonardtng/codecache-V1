@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import ProjectCard from './ProjectCard';
-import projectList from '../data/projectList';
+import projectList from '../../data/projectList';
 
 const useStyles = makeStyles({
   cardspace: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import logo from '../images/Codecache.svg';
+import logo from '../../images/Codecache.svg';
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 

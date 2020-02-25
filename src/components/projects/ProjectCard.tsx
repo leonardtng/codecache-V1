@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import LoginAlert from './LoginAlert';
-import HandleDescription from './HandleDescription';
+import LoginAlert from '../login/LoginAlert';
+import HandleDescription from '../profile/HandleDescription';
 import { withStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MergeTypeIcon from '@material-ui/icons/MergeType';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import { userState } from '../contexts/UserState';
+import { userState } from '../../contexts/UserState';
 
 const useStyles = makeStyles({
   cardoutline: {

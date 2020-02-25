@@ -5,7 +5,7 @@ import TuneIcon from '@material-ui/icons/Tune';
 import Slide from '@material-ui/core/Slide';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import tagsList from '../data/tagsList'
+import tagsList from '../../data/tagsList'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
