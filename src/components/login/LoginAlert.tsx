@@ -31,6 +31,7 @@ const LoginAlert: React.FC<Props> = ({ color }) => {
       <Dialog
         open={open}
         onClose={handleClose}
+        disableScrollLock={true}
         aria-labelledby="login-alert"
         aria-describedby="user-needs-to-login-to-access-this-function"
       >

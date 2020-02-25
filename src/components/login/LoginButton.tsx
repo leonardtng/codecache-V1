@@ -68,6 +68,7 @@ const LoginButton: React.FC = () => {
         open={showPopup}
         TransitionComponent={Transition}
         keepMounted
+        disableScrollLock={true}
         onClose={handleClickClose}
         aria-labelledby="login"
         aria-describedby="login-alert"

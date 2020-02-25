@@ -5,7 +5,9 @@ import TuneIcon from '@material-ui/icons/Tune';
 import Slide from '@material-ui/core/Slide';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import tagsList from '../../data/tagsList'
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import tagsList from '../../data/tagsList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: -1,
       position: 'absolute',
       margin: theme.spacing(1),
-      top: 55,
+      top: 40,
       left: '10%',
       width: '21.5vw',
       '& > * + *': {
@@ -34,48 +36,55 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: -1,
       position: 'absolute',
       margin: theme.spacing(1),
-      top: 55,
+      top: 52,
       left: '33.5%',
-      width: '7.5vw',
-      '& > * + *': {
-        marginTop: theme.spacing(3),
+      '& .MuiButton-label': {
+        width: '7.5vw',
+      },
+      '& .MuiButton-root': {
+        fontSize: 15,
       },
     },
-    svg: {
-      width: 100,
-      height: 100,
-    },
-    polygon: {
-      fill: theme.palette.common.white,
-      stroke: theme.palette.divider,
-      strokeWidth: 1,
+    menu: {
+      width: 'inherit'
     },
   }),
 );
 
-const SortOptions = [
-  { sortBy: 'Popular' },
-  { sortBy: 'Recently Added' },
-  { sortBy: 'Commits' },
-  { sortBy: 'Likes' },
-  { sortBy: 'Views' },
-];
+interface Props {
+  handleFilterOpen: () => void;
+  handleNavFilterOpen: () => void;
+}
 
-const FilterButton: React.FC = () => {
+const FilterButton: React.FC<Props> = ({ handleFilterOpen, handleNavFilterOpen }) => {
   const classes = useStyles();
 
   const [checked, setChecked] = useState(false);
 
   const handleClick = () => {
     setChecked(prev => !prev);
-  }
+    handleFilterOpen();
+    handleNavFilterOpen();
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleSortClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const [currentSort, setCurrentSort] = useState('Popular');
 
   return (
     <div className={classes.buttonroot}>
       <Button className={classes.filtericon} variant="contained" onClick={handleClick}>
         <TuneIcon />
       </Button>
-      <Slide direction="down" in={checked} mountOnEnter unmountOnExit>
+      <Slide direction="down" in={checked} mountOnEnter unmountOnExit  {...(checked ? { timeout: 200 } : {})}>
         <Autocomplete
           className={classes.filter}
           multiple
@@ -92,22 +101,36 @@ const FilterButton: React.FC = () => {
           )}
         />
       </Slide>
-      <Slide direction="down" in={checked} mountOnEnter unmountOnExit {...(checked ? { timeout: 1000 } : {})}>
-        <Autocomplete
-          className={classes.sort}
-          id="sort"
-          options={SortOptions}
-          getOptionLabel={option => option.sortBy}
-          renderInput={params => (
-            <TextField
-
-              {...params}
-              variant="standard"
-              label="Sort"
-              placeholder="Popular"
-            />
-          )}
-        />
+      <Slide direction="down" in={checked} mountOnEnter unmountOnExit {...(checked ? { timeout: 200 } : {})}>
+        <div className={classes.sort}>
+          <Button aria-controls="simple-menu" aria-haspopup="true" variant="outlined" onClick={handleSortClick}>
+            {currentSort}
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            disableScrollLock={true}
+            className={classes.menu}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            getContentAnchorEl={null}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+          >
+            <MenuItem onClick={() => { setCurrentSort('Popular'); handleClose() }}>Popular</MenuItem>
+            <MenuItem onClick={() => { setCurrentSort('Recently Added'); handleClose() }}>Recently Added</MenuItem>
+            <MenuItem onClick={() => { setCurrentSort('Commits'); handleClose() }}>Commits</MenuItem>
+            <MenuItem onClick={() => { setCurrentSort('Likes'); handleClose() }}>Likes</MenuItem>
+            <MenuItem onClick={() => { setCurrentSort('Views'); handleClose() }}>Views</MenuItem>
+          </Menu>
+        </div>
       </Slide>
     </div >
   )

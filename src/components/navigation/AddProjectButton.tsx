@@ -62,6 +62,7 @@ const AddProjectButton: React.FC = () => {
         open={open}
         style={{ textAlign: "center" }}
         onClose={handleClose}
+        disableScrollLock={true}
         aria-labelledby="add-project"
         aria-describedby="user-needs-to-login-to-access-this-function"
       >

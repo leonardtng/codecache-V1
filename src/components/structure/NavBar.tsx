@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Logo from '../navigation/Logo';
@@ -23,16 +23,28 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '10px',
       float: 'left',
     },
+    filterSection: {
+      position: 'relative',
+      zIndex: -2,
+    },
   }),
 );
 
 interface Props {
   currentSearch: string;
   changeCurrentSearch: (search: string) => void;
+  filterOpen: boolean;
+  handleFilterOpen: () => void;
 }
 
-const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
+const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch, filterOpen, handleFilterOpen }) => {
   const classes = useStyles();
+
+  const [navFilterHeight, setNavFilterHeight] = useState(0);
+
+  const handleNavFilterOpen = () => {
+    filterOpen ? setNavFilterHeight(0) : setNavFilterHeight(60);
+  }
 
   return (
     <Grid container spacing={0} className={classes.navbar}>
@@ -44,11 +56,12 @@ const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
         <SearchBar currentSearch={currentSearch} changeCurrentSearch={changeCurrentSearch} />
       </Grid>
       <Grid item xs={1} className={classes.navcolor}>
-        <FilterButton />
+        <FilterButton handleFilterOpen={handleFilterOpen} handleNavFilterOpen={handleNavFilterOpen} />
       </Grid>
       <Grid item xs={4} className={classes.navcolor}>
       </Grid>
       <HeaderIcons />
+      <Grid container spacing={0} className={classes.filterSection} style={{ height: navFilterHeight }}></Grid>
     </Grid>
   );
 }
