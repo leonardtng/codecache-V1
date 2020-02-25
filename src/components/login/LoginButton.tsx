@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import LoginPopup from './LoginPopup';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import { TransitionProps } from '@material-ui/core/transitions';
+// import LoginPopup from './LoginPopup';
 import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import { userState } from '../../contexts/UserState';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,52 +22,72 @@ const useStyles = makeStyles((theme: Theme) =>
         marginRight: '9.8%',
       },
     },
-    popupbg: {
-      position: 'fixed',
-      width: '100%',
-      height: '100%',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      margin: 'auto',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 1,
-    },
     github: {
       padding: '0 9%',
+    },
+    dialog: {
+      '& .MuiDialog-paperWidthSm': {
+        maxWidth: 400,
+      },
+    },
+    actions: {
+      justifyContent: 'center',
+      padding: "5%",
+      '& .MuiButton-containedSecondary': {
+        backgroundColor: '#24292e',
+      },
     },
   }),
 );
 
-interface Props {
-  showPopup: boolean;
-  setShowPopup: () => void;
-}
-
-const PopupConditional: React.FC<Props> = ({ showPopup, setShowPopup }) => {
-  const classes = useStyles();
-
-  if (showPopup) {
-    return <div className={classes.popupbg} onClick={setShowPopup}>
-      <LoginPopup />
-    </div>
-  }
-  return null
-}
+const Transition = React.forwardRef<unknown, TransitionProps>(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const LoginButton: React.FC = () => {
   const classes = useStyles();
-  
+
   let [showPopup, setShowPopup] = useState(false);
-  
+
+  const handleClickOpen = () => {
+    setShowPopup(true);
+  };
+
+  const handleClickClose = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div className={classes.root}>
-      <Button variant="contained" color="secondary" size="small" onClick={() => setShowPopup(showPopup = true)}>
+      <Button variant="contained" color="secondary" size="small" onClick={handleClickOpen}>
         <GitHubIcon />
         <div className={classes.github}>Login</div>
       </Button>
-      <PopupConditional showPopup={showPopup} setShowPopup={() => setShowPopup(showPopup = false)} />
+      <Dialog
+        className={classes.dialog}
+        open={showPopup}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClickClose}
+        aria-labelledby="login"
+        aria-describedby="login-alert"
+      >
+        <DialogTitle id="login">{"Login with Github"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="login-alert">
+            Login with your Github account to link your Github account with CodeCache
+          </DialogContentText>
+        </DialogContent>
+        <userState.Consumer>{({ toggleLogin }) => (
+          <DialogActions className={classes.actions}>
+            <Button variant="contained" color="secondary" size="small" onClick={toggleLogin}>
+              <GitHubIcon />
+              <div className={classes.github}>Github</div>
+            </Button>
+          </DialogActions>
+        )}
+        </userState.Consumer>
+      </Dialog>
     </div>
   );
 }
