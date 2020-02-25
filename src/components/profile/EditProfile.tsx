@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import { handleCombineTextLength } from '../../utils/common';
+import Zoom from '@material-ui/core/Zoom';
+import { TransitionProps } from '@material-ui/core/transitions';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -21,6 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
+const Transition = React.forwardRef<unknown, TransitionProps>(function Transition(props, ref) {
+  return <Zoom ref={ref} {...props} />;
+});
 
 interface Props {
   displayName: string;
@@ -58,7 +64,9 @@ const EditProfile: React.FC<Props> = ({ displayName, description, editDisplayNam
       <Dialog
         fullWidth={true}
         open={open}
+        TransitionComponent={Transition}
         onClose={handleClose}
+        disableScrollLock={true}
         aria-labelledby="edit-profile"
       >
         <DialogTitle id="edit-profile">Edit Profile</DialogTitle>

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { handleCombineTextLength } from '../../utils/common';
 import ImageUpload from './ImageUpload';
+import Zoom from '@material-ui/core/Zoom';
+import { TransitionProps } from '@material-ui/core/transitions';
 import Button from "@material-ui/core/Button";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -37,6 +39,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const Transition = React.forwardRef<unknown, TransitionProps>(function Transition(props, ref) {
+  return <Zoom ref={ref} {...props} />;
+});
+
 const AddProjectButton: React.FC = () => {
   const classes = useStyles();
 
@@ -60,6 +66,7 @@ const AddProjectButton: React.FC = () => {
       </Button>
       <Dialog
         open={open}
+        TransitionComponent={Transition}
         style={{ textAlign: "center" }}
         onClose={handleClose}
         disableScrollLock={true}

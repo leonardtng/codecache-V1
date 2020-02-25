@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
-        width: '22vw',
+        width: '80%',
       },
       '& .MuiInputBase-root': {
         fontSize: '70%',
