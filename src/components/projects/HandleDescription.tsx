@@ -17,7 +17,6 @@ const useStyles = makeStyles({
   },
   description: {
     transform: 'translate(0, -12.5rem)',
-    // fontSize: '2vh',
     textAlign: 'justify',
     padding: '2vh',
     height: '36vh',
@@ -47,7 +46,9 @@ const HandleDescription: React.FC<Props> = ({ img, name, description, showDescri
     return <Fade in={showDescription} timeout={350}>
       <div className={classes.maxheight}>
         <CardMedia
+          component="img"
           className={classes.background}
+          alt={name}
           image={img}
           title={name}
         />

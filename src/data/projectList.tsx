@@ -93,7 +93,7 @@ var projectList = [
     id: 7,
     owner: 'jeffrey',
     img: img8,
-    name: 'Drainage Analysis',
+    name: 'Fox in the Wild',
     description: 'The county courthouse is a historic building that is located in the oldest town in the state. Over the past few years several "localized" floods have occurred in the two-block region surrounding the courthouse. These floods develop as a result of rainfall events that are at or near the yearly maximum. The floodwaters have flowed both into the historic courthouse (photos were provided) and the adjoining annex, bordering the parking lot to the east of the courthouse. The floods originate in the vicinity of the parking lot and flow south and west into the courthouse complex, exiting onto the downhill streets adjacent to the courthouse (photos were provided)',
     commits: 411,
     views: 0,

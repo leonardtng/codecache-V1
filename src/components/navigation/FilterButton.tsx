@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: -1,
       position: 'absolute',
       margin: theme.spacing(1),
-      top: 40,
+      top: 50,
       left: '10%',
       width: '21.5vw',
       '& > * + *': {
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: -1,
       position: 'absolute',
       margin: theme.spacing(1),
-      top: 52,
+      top: 62,
       left: '33.5%',
       '& .MuiButton-label': {
         width: '7.5vw',
@@ -84,7 +84,7 @@ const FilterButton: React.FC<Props> = ({ handleFilterOpen, handleNavFilterOpen }
       <Button className={classes.filtericon} variant="contained" onClick={handleClick}>
         <TuneIcon />
       </Button>
-      <Slide direction="down" in={checked} mountOnEnter unmountOnExit  {...(checked ? { timeout: 200 } : {})}>
+      <Slide direction="down" in={checked} mountOnEnter unmountOnExit  {...(checked ? { timeout: 300 } : { timeout: 0 })}>
         <Autocomplete
           className={classes.filter}
           multiple
@@ -101,7 +101,7 @@ const FilterButton: React.FC<Props> = ({ handleFilterOpen, handleNavFilterOpen }
           )}
         />
       </Slide>
-      <Slide direction="down" in={checked} mountOnEnter unmountOnExit {...(checked ? { timeout: 200 } : {})}>
+      <Slide direction="down" in={checked} mountOnEnter unmountOnExit {...(checked ? { timeout: 300 } : { timeout: 0 })}>
         <div className={classes.sort}>
           <Button aria-controls="simple-menu" aria-haspopup="true" variant="outlined" onClick={handleSortClick}>
             {currentSort}

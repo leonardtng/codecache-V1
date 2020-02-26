@@ -7,6 +7,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import Zoom from '@material-ui/core/Zoom';
+import { TransitionProps } from '@material-ui/core/transitions';
+
+const Transition = React.forwardRef<unknown, TransitionProps>(function Transition(props, ref) {
+  return <Zoom ref={ref} {...props} />;
+});
 
 interface Props {
   color: string;
@@ -30,6 +36,7 @@ const LoginAlert: React.FC<Props> = ({ color }) => {
       </IconButton>
       <Dialog
         open={open}
+        TransitionComponent={Transition}
         onClose={handleClose}
         disableScrollLock={true}
         aria-labelledby="login-alert"

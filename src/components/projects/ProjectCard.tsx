@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LoginAlert from '../login/LoginAlert';
-import HandleDescription from '../profile/HandleDescription';
+import HandleDescription from './HandleDescription';
 import { withStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -14,6 +14,8 @@ import MergeTypeIcon from '@material-ui/icons/MergeType';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import { userState } from '../../contexts/UserState';
+import { useHistory } from "react-router-dom";
+import { currentProjectView } from '../../contexts/CurrentProjectView';
 
 const useStyles = makeStyles({
   cardoutline: {
@@ -90,14 +92,23 @@ const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, vie
     // Need to update the likes in the project in the database
   };
 
+  let history = useHistory();
+
+  const handleClickCard = (id: number, name: string) => {
+    history.push('/' + id + '/' + name);
+  };
+
   return (
     <div className={classes.cardoutline}>
-      <Card className={classes.card} >
-        <CardActionArea onMouseEnter={() => setShowDescription(true)} onMouseLeave={() => setShowDescription(false)}>
-          <CardContent classes={{ root: classes.nopadding }}>
-            <HandleDescription img={img} name={name} description={description} showDescription={showDescription} />
-          </CardContent>
-        </CardActionArea>
+      <Card className={classes.card}>
+        <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
+          return <CardActionArea onClick={() => { handleClickCard(id, name); toggleProjectid(id) }} onMouseEnter={() => setShowDescription(true)} onMouseLeave={() => setShowDescription(false)}>
+            <CardContent classes={{ root: classes.nopadding }}>
+              <HandleDescription img={img} name={name} description={description} showDescription={showDescription} />
+            </CardContent>
+          </CardActionArea>
+        }}
+        </currentProjectView.Consumer>
         <Typography variant="h6">
           {name}
         </Typography>

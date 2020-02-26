@@ -43,7 +43,7 @@ const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch, filterOpe
   const [navFilterHeight, setNavFilterHeight] = useState(0);
 
   const handleNavFilterOpen = () => {
-    filterOpen ? setNavFilterHeight(0) : setNavFilterHeight(60);
+    filterOpen ? setNavFilterHeight(0) : setNavFilterHeight(80);
   }
 
   return (
