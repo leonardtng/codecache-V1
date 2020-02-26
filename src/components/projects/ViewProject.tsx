@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import ViewProjectCard from './ViewProjectCard';
 import ViewOthers from './ViewOthers';
+import { currentProjectView } from '../../contexts/CurrentProjectView';
 
 
 const ViewProject: React.FC = () => {
@@ -10,7 +11,10 @@ const ViewProject: React.FC = () => {
       <Grid item xs={1}>
       </Grid>
       <Grid item xs={10}>
-        <ViewProjectCard />
+        <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
+          return <ViewProjectCard projectid={projectid} />
+        }}
+        </currentProjectView.Consumer>
         <ViewOthers />
       </Grid>
       <Grid item xs={1}>

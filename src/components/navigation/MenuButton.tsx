@@ -36,7 +36,7 @@ interface Props {
 const DisplayMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
   const classes = useStyles();
   let history = useHistory();
-  const handleClick = () => { history.push("/") }
+  const handleClick = () => { history.push("/"); }
   let location = useLocation();
 
   return (
@@ -61,11 +61,9 @@ const DisplayMenu: React.FC<Props> = ({ anchorEl, handleClose }) => {
       <MenuItem className={classes.menuitemstyle}>Help</MenuItem>
       <userState.Consumer>{({ isLoggedIn, toggleLogin }) => {
         if (location.pathname === '/profile') {
-          return <MenuItem className={classes.menuitemstyle} onClick={function todo() {
-            toggleLogin();
-            handleClick();
-          }}>Logout</MenuItem>}
-        return <MenuItem className={classes.menuitemstyle} onClick={toggleLogin}>Logout</MenuItem>
+          return <MenuItem className={classes.menuitemstyle} onClick={() => { toggleLogin(); handleClick() }}>Logout</MenuItem>
+        }
+        return <MenuItem className={classes.menuitemstyle} onClick={() => { toggleLogin(); handleClick(); window.location.reload() }}>Logout</MenuItem>
       }}
       </userState.Consumer>
     </Menu>
@@ -83,7 +81,7 @@ const MenuButton = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
   return (
     <span className={classes.root}>
       <IconButton aria-controls="menu" aria-haspopup="true" onClick={handleClick}>

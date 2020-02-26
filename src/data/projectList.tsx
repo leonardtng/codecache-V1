@@ -21,6 +21,7 @@ var projectList = [
     commits: 203,
     views: 0,
     likes: 65,
+    collaborators: 2,
   },
 
   {
@@ -32,6 +33,7 @@ var projectList = [
     commits: 30,
     views: 0,
     likes: 8,
+    collaborators: 3,
   },
 
   {
@@ -43,6 +45,7 @@ var projectList = [
     commits: 610,
     views: 0,
     likes: 56,
+    collaborators: 3,
   },
 
   {
@@ -54,6 +57,7 @@ var projectList = [
     commits: 50,
     views: 0,
     likes: 16,
+    collaborators: 2,
   },
 
   {
@@ -65,6 +69,7 @@ var projectList = [
     commits: 60,
     views: 0,
     likes: 3,
+    collaborators: 1,
   },
 
   {
@@ -76,6 +81,7 @@ var projectList = [
     commits: 56,
     views: 0,
     likes: 20,
+    collaborators: 1,
   },
   
   {
@@ -87,6 +93,7 @@ var projectList = [
     commits: 355,
     views: 0,
     likes: 91,
+    collaborators: 3,
   },
 
   {
@@ -98,6 +105,7 @@ var projectList = [
     commits: 411,
     views: 0,
     likes: 95,
+    collaborators: 3,
   },
 
   {
@@ -109,6 +117,7 @@ var projectList = [
     commits: 942,
     views: 0,
     likes: 61,
+    collaborators: 1,
   },
 
   {
@@ -120,6 +129,7 @@ var projectList = [
     commits: 20,
     views: 0,
     likes: 34,
+    collaborators: 2,
   },
 
 ];
