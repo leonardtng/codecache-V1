@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LoginAlert from '../login/LoginAlert';
+import { useLocation } from 'react-router';
 import { withStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -16,6 +17,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import Typography from '@material-ui/core/Typography';
 import { userState } from '../../contexts/UserState';
 import projectList from '../../data/projectList';
+import { FacebookShareButton } from "react-share";
 
 const useStyles = makeStyles({
   root: {
@@ -102,6 +104,8 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
     // Need to update the likes in the project in the database
   };
 
+  const location = useLocation();
+
   return (
     <Card className={classes.root}>
       <Grid container spacing={0}>
@@ -121,12 +125,17 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
             </Typography>
           </div>
           <div className={classes.sharebutton}>
-            <IconButton aria-label="share" style={{ color: "#ffffff" }}>
-              <ShareIcon />
-            </IconButton>
-            <Typography variant="body2" color="textSecondary" component="p">
-              <div className={classes.sideicontext}>Share</div>
-            </Typography>
+          <FacebookShareButton
+            url={location.pathname}
+            quote={'Check this out! Amazing project called ' + project.name + ' on CodeCachenow!'}
+          >
+              <IconButton aria-label="share" style={{ color: "#ffffff" }}>
+                <ShareIcon />
+              </IconButton>
+              <Typography variant="body2" color="textSecondary" component="p">
+                <div className={classes.sideicontext}>Share</div>
+              </Typography>
+          </FacebookShareButton>
           </div>
         </Grid>
         <Grid item xs={8}>
