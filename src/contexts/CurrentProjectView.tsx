@@ -8,12 +8,12 @@ export const currentProjectView = createContext(
 );
 
 const CurrentProjectView: React.FC = (props) => {
-  let location = useLocation();
-
+  const location = useLocation();
+  
   const ref = Number(location.pathname.split('/').slice(-2)[0]);
 
-  let [projectid, setProjectid] = useState(ref);
-  let toggleProjectid = (id: number) => { 
+  const [projectid, setProjectid] = useState<number>(ref);
+  const toggleProjectid = (id: number) => { 
       setProjectid(id);
    };
 

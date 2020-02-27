@@ -62,7 +62,7 @@ const HtmlTooltip = withStyles((theme: Theme) => ({
   },
 }))(Tooltip);
 
-interface Props {
+interface ProjectCardProps {
   id: number;
   img: string;
   name: string;
@@ -72,13 +72,13 @@ interface Props {
   likes: number;
 }
 
-const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, views, likes }) => {
+const ProjectCard: React.FC<ProjectCardProps> = (props: ProjectCardProps) => {
   const classes = useStyles();
 
-  const [showDescription, setShowDescription] = useState(false);
+  const [showDescription, setShowDescription] = useState<boolean>(false);
 
-  const [color, setColor] = useState("#8f8f8f");
-  const [currentLikes, setCurrentLikes] = useState(likes);
+  const [color, setColor] = useState<string>("#8f8f8f");
+  const [currentLikes, setCurrentLikes] = useState<number>(props.likes);
 
   const handleClickLike = () => {
     if (color === "#8f8f8f") {
@@ -92,7 +92,7 @@ const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, vie
     // Need to update the likes in the project in the database
   };
 
-  let history = useHistory();
+  const history = useHistory();
 
   const handleClickCard = (id: number, name: string) => {
     history.push('/' + id + '/' + name);
@@ -102,15 +102,24 @@ const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, vie
     <div className={classes.cardoutline}>
       <Card className={classes.card}>
         <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
-          return <CardActionArea onClick={() => { handleClickCard(id, name); toggleProjectid(id) }} onMouseEnter={() => setShowDescription(true)} onMouseLeave={() => setShowDescription(false)}>
+          return <CardActionArea 
+                    onClick={() => { handleClickCard(props.id, props.name); toggleProjectid(props.id) }} 
+                    onMouseEnter={() => setShowDescription(true)} 
+                    onMouseLeave={() => setShowDescription(false)}
+                  >
             <CardContent classes={{ root: classes.nopadding }}>
-              <HandleDescription img={img} name={name} description={description} showDescription={showDescription} />
+              <HandleDescription 
+                img={props.img} 
+                name={props.name} 
+                description={props.description} 
+                showDescription={showDescription} 
+              />
             </CardContent>
           </CardActionArea>
         }}
         </currentProjectView.Consumer>
         <Typography variant="h6">
-          {name}
+          {props.name}
         </Typography>
         <CardActions>
           <Grid container spacing={0} className={classes.fontsize}>
@@ -131,7 +140,7 @@ const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, vie
               </HtmlTooltip>
             </Grid>
             <Grid item xs={1}>
-              {commits}
+              {props.commits}
             </Grid>
             <Grid item xs={1}>
               <HtmlTooltip
@@ -150,7 +159,7 @@ const ProjectCard: React.FC<Props> = ({ id, img, name, description, commits, vie
               </HtmlTooltip>
             </Grid>
             <Grid item xs={1}>
-              {views}
+              {props.views}
             </Grid>
             <Grid item xs={6}>
             </Grid>

@@ -13,8 +13,9 @@ const useStyles = makeStyles({
   },
 });
 
-interface Props {
+interface ProfileProjectSpaceProps {
   currentSearch: string;
+  currentFilter: Array<string>;
   username: string;
   displayName: string;
   setDisplayName: (newDisplayName: string) => void;
@@ -22,14 +23,53 @@ interface Props {
   setDescription: (newDescription: string) => void;
 }
 
-const ProfileProjectSpace: React.FC<Props> = ({ currentSearch, username, displayName, setDisplayName, description, setDescription }) => {
+const ProfileProjectSpace: React.FC<ProfileProjectSpaceProps> = (props: ProfileProjectSpaceProps) => {
   const classes = useStyles();
 
+  interface Project {
+    id: number;
+    owner: string;
+    img: string;
+    name: string;
+    description: string;
+    commits: number;
+    views: number;
+    likes: number;
+    collaborators: number;
+    tags: string[];
+  }
+
+  const compareFilter = (project: Project, currentFilter: Array<string>) => {
+    let i;
+    let check = false;
+    if (currentFilter.length === 0) {
+      check = true;
+    } else {
+      for (i = 0; i < currentFilter.length; i++) {
+        if (project.tags.includes(currentFilter[i])) {
+          check = true;
+        } else {
+          check = false;
+          break;
+        };
+      }
+    }
+    return check
+  }
+
   const ProjectItems = projectList.map((project) => {
-    if (project.owner === username) {
-      if (project.name.toLowerCase().includes(currentSearch.toLowerCase())) {
+    if (project.owner === props.username) {
+      if (project.name.toLowerCase().includes(props.currentSearch.toLowerCase()) && compareFilter(project, props.currentFilter)) {
         return <Grid item xs={12} sm={4} key={project.id.toString()}>
-          <ProjectCard id={project.id} img={project.img} name={project.name} description={project.description} commits={project.commits} views={project.views} likes={project.likes} />
+          <ProjectCard 
+            id={project.id} 
+            img={project.img} 
+            name={project.name} 
+            description={project.description} 
+            commits={project.commits} 
+            views={project.views} 
+            likes={project.likes}
+          />
         </Grid>
       }
       return <Box height={'85vh'}>
@@ -42,7 +82,15 @@ const ProfileProjectSpace: React.FC<Props> = ({ currentSearch, username, display
   return (
     <Grid container spacing={0}>
       <Grid item xs={12} sm={4} className={classes.adjustcard} >
-        <ProfileCard displayName={displayName} setDisplayName={setDisplayName} description={description} setDescription={setDescription} projectCommits={10} totalProjectViews={200} totalLikes={30} />
+        <ProfileCard 
+          displayName={props.displayName} 
+          setDisplayName={props.setDisplayName} 
+          description={props.description} 
+          setDescription={props.setDescription} 
+          projectCommits={10} 
+          totalProjectViews={200} 
+          totalLikes={30} 
+        />
       </Grid>
       <Grid item xs={12} sm={8} className={classes.adjustcard}>
         <Grid container spacing={0}>

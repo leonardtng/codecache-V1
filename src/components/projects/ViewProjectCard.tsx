@@ -79,16 +79,16 @@ const HtmlTooltip = withStyles((theme: Theme) => ({
   },
 }))(Tooltip);
 
-interface Props {
+interface ViewProjectCardProps {
   projectid: number;
 };
 
-const ViewProjectCard: React.FC<Props> = ({ projectid }) => {
+const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardProps) => {
   const classes = useStyles();
-  const project = projectList[projectid];
+  const project = projectList[props.projectid];
 
-  const [color, setColor] = useState("#ffffff");
-  const [currentLikes, setCurrentLikes] = useState(project.likes);
+  const [color, setColor] = useState<string>("#ffffff");
+  const [currentLikes, setCurrentLikes] = useState<number>(project.likes);
 
   const handleClickLike = () => {
     if (color === "#ffffff") {

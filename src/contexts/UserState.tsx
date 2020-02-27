@@ -12,18 +12,18 @@ export const userState = createContext(
 );
 
 const UserState: React.FC = (props) => {
-  let [isLoggedIn, setIsLoggedIn] = useState(false);
-  let toggleLogin = () => { isLoggedIn ? setIsLoggedIn(false) : setIsLoggedIn(true); };
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const toggleLogin = () => { isLoggedIn ? setIsLoggedIn(false) : setIsLoggedIn(true); };
 
-  let username = 'serenetay'; //Get from github
+  const username = 'serenetay'; //Get from github
 
-  let [displayName, setDisplayName] = useState(username);
-  let changeDisplayName = (newDisplayName: string) => { setDisplayName(newDisplayName) };
+  const [displayName, setDisplayName] = useState<string>(username);
+  const changeDisplayName = (newDisplayName: string) => { setDisplayName(newDisplayName) };
 
-  let [description, setDescription] = useState(
+  const [description, setDescription] = useState<string>(
     'Currently working in a fintech company and learning about IT. I can code in Python, Javascript, PHP, C++, C#, HTML, CSS. Looking for part-time opportunities for me to practice my skills.'
     ); //Get from github?
-  let changeDescription = (newDescription: string) => { setDescription(newDescription) };
+  const changeDescription = (newDescription: string) => { setDescription(newDescription) };
 
   return (
     <userState.Provider 

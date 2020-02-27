@@ -46,7 +46,7 @@ const Transition = React.forwardRef<unknown, TransitionProps>(function Transitio
 const AddProjectButton: React.FC = () => {
   const classes = useStyles();
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState<boolean>(false)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -56,8 +56,8 @@ const AddProjectButton: React.FC = () => {
     setOpen(false);
   };
 
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
 
   return (
     <span className={classes.addprojectbuttonroot}>
@@ -111,7 +111,7 @@ const AddProjectButton: React.FC = () => {
                 multiple
                 id="tags-standard"
                 options={tagsList}
-                getOptionLabel={option => option.tag}
+                getOptionLabel={option => option}
                 renderInput={params => (
                   <TextField
                     {...params}

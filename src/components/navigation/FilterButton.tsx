@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'absolute',
       margin: theme.spacing(1),
       top: 50,
-      left: '10%',
-      width: '21.5vw',
+      left: '22%',
+      minWidth: '21.5vw',
       '& > * + *': {
         marginTop: theme.spacing(3),
       },
@@ -36,13 +36,13 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: -1,
       position: 'absolute',
       margin: theme.spacing(1),
-      top: 62,
-      left: '33.5%',
+      top: 65,
+      left: '11%',
       '& .MuiButton-label': {
         width: '7.5vw',
       },
       '& .MuiButton-root': {
-        fontSize: 15,
+        fontSize: '0.8vw',
       },
     },
     menu: {
@@ -51,20 +51,24 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface Props {
+interface FilterButtonProps {
+  currentFilter: Array<string>;
+  changeCurrentFilter: (filter: string) => void;
+  currentSort: string;
+  changeCurrentSort: (sort: string) => void;
   handleFilterOpen: () => void;
   handleNavFilterOpen: () => void;
 }
 
-const FilterButton: React.FC<Props> = ({ handleFilterOpen, handleNavFilterOpen }) => {
+const FilterButton: React.FC<FilterButtonProps> = (props: FilterButtonProps) => {
   const classes = useStyles();
 
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState<boolean>(false);
 
   const handleClick = () => {
     setChecked(prev => !prev);
-    handleFilterOpen();
-    handleNavFilterOpen();
+    props.handleFilterOpen();
+    props.handleNavFilterOpen();
   };
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -77,8 +81,6 @@ const FilterButton: React.FC<Props> = ({ handleFilterOpen, handleNavFilterOpen }
     setAnchorEl(null);
   };
 
-  const [currentSort, setCurrentSort] = useState('Popular');
-
   return (
     <div className={classes.buttonroot}>
       <Button className={classes.filtericon} variant="contained" onClick={handleClick}>
@@ -86,11 +88,21 @@ const FilterButton: React.FC<Props> = ({ handleFilterOpen, handleNavFilterOpen }
       </Button>
       <Slide direction="down" in={checked} mountOnEnter unmountOnExit  {...(checked ? { timeout: 300 } : { timeout: 0 })}>
         <Autocomplete
+          id="filter"
           className={classes.filter}
           multiple
-          id="filter"
           options={tagsList}
-          getOptionLabel={option => option.tag}
+          onChange={(event: object, value: any) => {
+            console.log(value);
+            if (value.length === 0) {
+              props.changeCurrentFilter('');
+            }
+            let i;
+            for (i = 0; i < value.length; i++) {
+              props.changeCurrentFilter(value[i]);
+            };
+          }}
+          getOptionLabel={option => option}
           renderInput={params => (
             <TextField
               {...params}
@@ -104,7 +116,7 @@ const FilterButton: React.FC<Props> = ({ handleFilterOpen, handleNavFilterOpen }
       <Slide direction="down" in={checked} mountOnEnter unmountOnExit {...(checked ? { timeout: 300 } : { timeout: 0 })}>
         <div className={classes.sort}>
           <Button aria-controls="simple-menu" aria-haspopup="true" variant="outlined" onClick={handleSortClick}>
-            {currentSort}
+            {props.currentSort}
           </Button>
           <Menu
             id="simple-menu"
@@ -124,11 +136,10 @@ const FilterButton: React.FC<Props> = ({ handleFilterOpen, handleNavFilterOpen }
               horizontal: 'left',
             }}
           >
-            <MenuItem onClick={() => { setCurrentSort('Popular'); handleClose() }}>Popular</MenuItem>
-            <MenuItem onClick={() => { setCurrentSort('Recently Added'); handleClose() }}>Recently Added</MenuItem>
-            <MenuItem onClick={() => { setCurrentSort('Commits'); handleClose() }}>Commits</MenuItem>
-            <MenuItem onClick={() => { setCurrentSort('Likes'); handleClose() }}>Likes</MenuItem>
-            <MenuItem onClick={() => { setCurrentSort('Views'); handleClose() }}>Views</MenuItem>
+            <MenuItem onClick={() => { props.changeCurrentSort('Popular'); handleClose() }}>Popular</MenuItem>
+            <MenuItem onClick={() => { props.changeCurrentSort('Commits'); handleClose() }}>Commits</MenuItem>
+            <MenuItem onClick={() => { props.changeCurrentSort('Likes'); handleClose() }}>Likes</MenuItem>
+            <MenuItem onClick={() => { props.changeCurrentSort('Views'); handleClose() }}>Views</MenuItem>
           </Menu>
         </div>
       </Slide>

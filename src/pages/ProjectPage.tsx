@@ -20,24 +20,48 @@ const useStyles = makeStyles((theme: Theme) =>
 const ProjectPage: React.FC = () => {
   const classes = useStyles();
 
-  const [currentSearch, setCurrentSearch] = useState('');
+  const [currentSearch, setCurrentSearch] = useState<string>('');
   const changeCurrentSearch = (search: string) => {
     setCurrentSearch(search);
   }
 
-  const [height, setHeight] = useState(80);
-  const [filterOpen, setFilterOpen] = useState(false);
+  const [currentFilter, setCurrentFilter] = useState<Array<string>>([]);
+  const newFilter: Array<string> = [];
+  const changeCurrentFilter = (filter: string) => {
+    if (filter === '') {
+      setCurrentFilter([]);
+    } else {
+      newFilter.push(filter);
+      setCurrentFilter(newFilter);
+    }
+  }
+
+  const [currentSort, setCurrentSort] = useState<string>('Popular');
+  const changeCurrentSort = (sort: string) => {
+    setCurrentSort(sort);
+  }
+
+  const [height, setHeight] = useState<number>(80);
+  const [filterOpen, setFilterOpen] = useState<boolean>(false);
 
   const handleFilterOpen = () => {
     setFilterOpen(prev => !prev);
     filterOpen ? setHeight(80) : setHeight(160);
   }
 
-
   return (
     <div>
       <div className={classes.root}>
-        <NavBar currentSearch={currentSearch} changeCurrentSearch={changeCurrentSearch} filterOpen={filterOpen} handleFilterOpen={handleFilterOpen} />
+        <NavBar
+          currentSearch={currentSearch}
+          changeCurrentSearch={changeCurrentSearch}
+          currentFilter={currentFilter}
+          changeCurrentFilter={changeCurrentFilter}
+          currentSort={currentSort}
+          changeCurrentSort={changeCurrentSort}
+          filterOpen={filterOpen}
+          handleFilterOpen={handleFilterOpen}
+        />
         <Grid container spacing={0} className={classes.filterSection} style={{ height: height }}></Grid>
         <ViewProject />
         <Footer />

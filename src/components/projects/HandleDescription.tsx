@@ -24,36 +24,36 @@ const useStyles = makeStyles({
   },
 });
 
-interface Props {
+interface HandleDescriptionProps {
   img: string;
   name: string;
   description: string;
   showDescription: boolean;
 }
 
-const HandleDescription: React.FC<Props> = ({ img, name, description, showDescription }) => {
+const HandleDescription: React.FC<HandleDescriptionProps> = (props: HandleDescriptionProps) => {
   const classes = useStyles();
 
-  const modifyDescription = (description: any) => {
+  const modifyDescription = (description: string) => {
     if (description.length > 275) {
-      var newDescription = description.slice(0, 270) + ' ...'
+      const newDescription = description.slice(0, 270) + ' ...'
       return newDescription;
     };
     return description
   };
 
-  if (showDescription) {
-    return <Fade in={showDescription} timeout={350}>
+  if (props.showDescription) {
+    return <Fade in={props.showDescription} timeout={350}>
       <div className={classes.maxheight}>
         <CardMedia
           component="img"
           className={classes.background}
-          alt={name}
-          image={img}
-          title={name}
+          alt={props.name}
+          image={props.img}
+          title={props.name}
         />
         <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-          {modifyDescription(description)}
+          {modifyDescription(props.description)}
         </Typography>
       </div>
     </Fade>
@@ -62,8 +62,8 @@ const HandleDescription: React.FC<Props> = ({ img, name, description, showDescri
     <div className={classes.maxheight}>
       <CardMedia
         className={classes.media}
-        image={img}
-        title={name}
+        image={props.img}
+        title={props.name}
       />
     </div >
   );

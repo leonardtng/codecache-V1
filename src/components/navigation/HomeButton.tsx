@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const HomeButton: React.FC = () => {
   const classes = useStyles();
-  let history = useHistory();
+  const history = useHistory();
   const handleClick = () => { history.push("./") };
 
   return (

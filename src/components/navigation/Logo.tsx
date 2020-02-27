@@ -18,8 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Logo: React.FC = () => {
   const classes = useStyles();
-  let history = useHistory();
-  const handleClick = () => { history.push("/") }
+  const history = useHistory();
+  const handleClick = () => { 
+    history.push("/");
+    window.location.reload();
+  }
 
   return (
     <Button className={classes.logostyle} onClick={handleClick}>

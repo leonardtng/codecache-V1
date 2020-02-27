@@ -22,8 +22,8 @@ const useStyles = makeStyles({
 
 const Footer: React.FC = () => {
   const classes = useStyles();
-  let date = new Date();
-  let year = date.getFullYear();
+  const date = new Date();
+  const year = date.getFullYear();
   
   return (
     <Grid container spacing={0} className={classes.footer}>

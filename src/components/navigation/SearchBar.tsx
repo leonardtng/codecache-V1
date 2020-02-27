@@ -41,12 +41,12 @@ const useOutlinedInputStyles = makeStyles(theme => ({
   }
 }));
 
-interface Props {
+interface SearchBarProps {
   currentSearch: string;
   changeCurrentSearch: (search: string) => void;
 }
 
-const SearchBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   const classes = useStyles();
   const textfieldStyle = useOutlinedInputStyles();
 
@@ -58,17 +58,13 @@ const SearchBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch }) => {
       options={projectList}
       disableOpenOnFocus
       size='small'
-      onInputChange={(event: any, value: string) => { event.preventDefault(); changeCurrentSearch(value) }}
+      onInputChange={(event: any, value: string) => { event.preventDefault(); props.changeCurrentSearch(value) }}
       autoComplete
       autoHighlight
       getOptionLabel={option => option.name}
       renderInput={params => (
         <TextField {...params} className={textfieldStyle.root} placeholder="Search..." variant="outlined"
-          value={currentSearch}
-          onChange={(event) => {
-            event.preventDefault();
-            changeCurrentSearch(event.target.value);
-          }}
+          value={props.currentSearch}
         // InputProps={{
         //   startAdornment: (
         //     <InputAdornment position="start">

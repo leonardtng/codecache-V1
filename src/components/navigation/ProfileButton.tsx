@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const ProfileButton: React.FC = () => {
   const classes = useStyles();
-  let history = useHistory();
-  const handleClick = () => { history.push("./profile") };
+  const history = useHistory();
+  const handleClick = () => { history.push("/profile") };
 
   return (
     <span className={classes.buttonroot}>

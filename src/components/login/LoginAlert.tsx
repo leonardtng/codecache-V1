@@ -14,12 +14,12 @@ const Transition = React.forwardRef<unknown, TransitionProps>(function Transitio
   return <Zoom ref={ref} {...props} />;
 });
 
-interface Props {
+interface LoginAlertProps {
   color: string;
 }
 
-const LoginAlert: React.FC<Props> = ({ color }) => {
-  const [open, setOpen] = useState(false)
+const LoginAlert: React.FC<LoginAlertProps> = (props: LoginAlertProps ) => {
+  const [open, setOpen] = useState<boolean>(false)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,7 +31,7 @@ const LoginAlert: React.FC<Props> = ({ color }) => {
 
   return (
     <div>
-      <IconButton aria-label="likes" style={{ color: color }} onClick={handleClickOpen}>
+      <IconButton aria-label="likes" style={{ color: props.color }} onClick={handleClickOpen}>
         <ThumbUpAltIcon />
       </IconButton>
       <Dialog

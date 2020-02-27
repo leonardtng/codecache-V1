@@ -46,7 +46,7 @@ const Transition = React.forwardRef<unknown, TransitionProps>(function Transitio
 const LoginButton: React.FC = () => {
   const classes = useStyles();
 
-  let [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleClickOpen = () => {
     setShowPopup(true);

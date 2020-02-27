@@ -21,13 +21,30 @@ const useStyles = makeStyles((theme: Theme) =>
 const ProfilePage: React.FC = () => {
   const classes = useStyles();
 
-  const [currentSearch, setCurrentSearch] = useState('');
+  const [currentSearch, setCurrentSearch] = useState<string>('');
   const changeCurrentSearch = (search: string) => {
     setCurrentSearch(search);
   }
+  
 
-  const [height, setHeight] = useState(40);
-  const [filterOpen, setFilterOpen] = useState(false);
+  const [currentFilter, setCurrentFilter] = useState<Array<string>>([]);
+  const newFilter: Array<string> = [];
+  const changeCurrentFilter = (filter: string) => {
+    if (filter === '') {
+      setCurrentFilter([]);
+    } else {
+      newFilter.push(filter);
+      setCurrentFilter(newFilter);
+    }
+  }
+
+  const [currentSort, setCurrentSort] = useState<string>('Popular');
+  const changeCurrentSort = (sort: string) => {
+    setCurrentSort(sort);
+  }
+
+  const [height, setHeight] = useState<number>(40);
+  const [filterOpen, setFilterOpen] = useState<boolean>(false);
 
   const handleFilterOpen = () => {
     setFilterOpen(prev => !prev);
@@ -36,10 +53,27 @@ const ProfilePage: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <NavBar currentSearch={currentSearch} changeCurrentSearch={changeCurrentSearch} filterOpen={filterOpen} handleFilterOpen={handleFilterOpen} />
+      <NavBar
+        currentSearch={currentSearch}
+        changeCurrentSearch={changeCurrentSearch}
+        currentFilter={currentFilter}
+        changeCurrentFilter={changeCurrentFilter}
+        currentSort={currentSort}
+        changeCurrentSort={changeCurrentSort}
+        filterOpen={filterOpen}
+        handleFilterOpen={handleFilterOpen}
+      />
       <Grid container spacing={0} className={classes.filterSection} style={{ height: height }}></Grid>
       <userState.Consumer>{({ username, displayName, setDisplayName, description, setDescription }) => {
-        return <ProfileProjectSpace currentSearch={currentSearch} username={username} displayName={displayName} setDisplayName={setDisplayName} description={description} setDescription={setDescription} />
+        return <ProfileProjectSpace
+          currentSearch={currentSearch}
+          currentFilter={currentFilter}
+          username={username}
+          displayName={displayName}
+          setDisplayName={setDisplayName}
+          description={description}
+          setDescription={setDescription}
+        />
       }}
       </userState.Consumer>
       <Footer />

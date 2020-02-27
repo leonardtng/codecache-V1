@@ -4,7 +4,6 @@ import ViewProjectCard from './ViewProjectCard';
 import ViewOthers from './ViewOthers';
 import { currentProjectView } from '../../contexts/CurrentProjectView';
 
-
 const ViewProject: React.FC = () => {
   return (
     <Grid container spacing={0}>

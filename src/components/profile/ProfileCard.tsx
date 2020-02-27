@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface Props {
+interface ProfileCardProps {
   displayName: string;
   setDisplayName: (newDisplayName: string) => void;
   description: string;
@@ -54,7 +54,7 @@ interface Props {
   totalLikes: number;
 }
 
-const ProfileCard: React.FC<Props> = ({ displayName, setDisplayName, description, setDescription, projectCommits, totalProjectViews, totalLikes }) => {
+const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
   const classes = useStyles();
 
   return (
@@ -62,18 +62,18 @@ const ProfileCard: React.FC<Props> = ({ displayName, setDisplayName, description
       <Card className={classes.card}>
         <div className={classes.imagesectionheight}>
           <CardActionArea>
-            <Avatar alt={displayName} src={ProfileImage} className={classes.avatarlarge} />
+            <Avatar alt={props.displayName} src={ProfileImage} className={classes.avatarlarge} />
           </CardActionArea>
         </div>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {displayName}
+            {props.displayName}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {description}
+            {props.description}
           </Typography>
           <div className={classes.alignright}>
-            <EditProfile displayName={displayName} description={description} editDisplayName={setDisplayName} editDescription={setDescription} />
+            <EditProfile displayName={props.displayName} description={props.description} editDisplayName={props.setDisplayName} editDescription={props.setDescription} />
           </div>
         </CardContent>
         <CardContent>
@@ -83,21 +83,21 @@ const ProfileCard: React.FC<Props> = ({ displayName, setDisplayName, description
                 <MergeTypeIcon />
               </ListItemIcon>
               <ListItemText primary="Project Commits" />
-              <ListItemText primary={projectCommits} className={classes.alignright} />
+              <ListItemText primary={props.projectCommits} className={classes.alignright} />
             </ListItem>
             <ListItem>
               <ListItemIcon>
                 <VisibilityIcon />
               </ListItemIcon>
               <ListItemText primary="Total Project Views" />
-              <ListItemText primary={totalProjectViews} className={classes.alignright} />
+              <ListItemText primary={props.totalProjectViews} className={classes.alignright} />
             </ListItem>
             <ListItem>
               <ListItemIcon>
                 <ThumbUpAltIcon />
               </ListItemIcon>
               <ListItemText primary="Total Likes" />
-              <ListItemText primary={totalLikes} className={classes.alignright} />
+              <ListItemText primary={props.totalLikes} className={classes.alignright} />
             </ListItem>
           </List>
         </CardContent>

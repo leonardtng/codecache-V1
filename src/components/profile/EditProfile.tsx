@@ -28,23 +28,23 @@ const Transition = React.forwardRef<unknown, TransitionProps>(function Transitio
   return <Zoom ref={ref} {...props} />;
 });
 
-interface Props {
+interface EditProfileProps {
   displayName: string;
   description: string;
   editDisplayName: (newDisplayName: string) => void;
   editDescription: (description: string) => void;
 }
 
-const EditProfile: React.FC<Props> = ({ displayName, description, editDisplayName, editDescription }) => {
+const EditProfile: React.FC<EditProfileProps> = (props: EditProfileProps) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [newDisplayName, setNewDisplayName] = useState(displayName);
-  const [newDescription, setNewDescription] = useState(description);
+  const [open, setOpen] = useState<boolean>(false);
+  const [newDisplayName, setNewDisplayName] = useState(props.displayName);
+  const [newDescription, setNewDescription] = useState(props.description);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    editDisplayName(newDisplayName);
-    editDescription(newDescription);
+    props.editDisplayName(newDisplayName);
+    props.editDescription(newDescription);
     setOpen(false);
   }
 

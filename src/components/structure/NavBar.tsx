@@ -30,20 +30,24 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface Props {
+interface NavBarProps {
   currentSearch: string;
   changeCurrentSearch: (search: string) => void;
+  currentFilter: Array<string>;
+  changeCurrentFilter: (filter: string) => void;
+  currentSort: string;
+  changeCurrentSort: (sort: string) => void;
   filterOpen: boolean;
   handleFilterOpen: () => void;
 }
 
-const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch, filterOpen, handleFilterOpen }) => {
+const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
   const classes = useStyles();
 
-  const [navFilterHeight, setNavFilterHeight] = useState(0);
+  const [navFilterHeight, setNavFilterHeight] = useState<number>(0);
 
   const handleNavFilterOpen = () => {
-    filterOpen ? setNavFilterHeight(0) : setNavFilterHeight(80);
+    props.filterOpen ? setNavFilterHeight(0) : setNavFilterHeight(80);
   }
 
   return (
@@ -53,10 +57,20 @@ const NavBar: React.FC<Props> = ({ currentSearch, changeCurrentSearch, filterOpe
       </Grid>
       <Grid item xs={3} className={classes.navcolor}>
         <div className={classes.divider} />
-        <SearchBar currentSearch={currentSearch} changeCurrentSearch={changeCurrentSearch} />
+        <SearchBar 
+          currentSearch={props.currentSearch} 
+          changeCurrentSearch={props.changeCurrentSearch} 
+        />
       </Grid>
       <Grid item xs={1} className={classes.navcolor}>
-        <FilterButton handleFilterOpen={handleFilterOpen} handleNavFilterOpen={handleNavFilterOpen} />
+        <FilterButton 
+          currentFilter={props.currentFilter} 
+          changeCurrentFilter={props.changeCurrentFilter} 
+          currentSort={props.currentSort}
+          changeCurrentSort={props.changeCurrentSort}
+          handleFilterOpen={props.handleFilterOpen} 
+          handleNavFilterOpen={handleNavFilterOpen} 
+        />
       </Grid>
       <Grid item xs={4} className={classes.navcolor}>
       </Grid>
