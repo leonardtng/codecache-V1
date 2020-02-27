@@ -8,17 +8,34 @@ import UserState from './contexts/UserState';
 import CurrentProjectView, { currentProjectView } from './contexts/CurrentProjectView';
 import projectList from './data/projectList';
 
-const handlePath = (projectid: number) => {
-  const path = '/'+ projectList[projectid].id + '/' + projectList[projectid].name;
-  return path
-}
-
 const App: React.FC = () => {
+
+  const handlePath = (projectid: number) => {
+    // for (let project of projectList) {
+    //   let id = null
+    //   if (project.id === projectid) {
+    //     id = project.id;
+    //     const path = '/' + id + '/' + project.name;
+    //     console.log(path);
+    //     return path
+    //   } else {
+    //     continue;
+    //   }
+
+    // }
+    // console.log(projectList)
+    const path = '/' + projectList[projectid].id + '/' + projectList[projectid].name;
+    // console.log(projectList);
+    // console.log(path);
+    return path
+  }
+
   return (
     <UserState>
       <Router>
         <CurrentProjectView>
           <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
+            console.log(projectid);
             return <Switch>
               <Route path={handlePath(projectid)} component={ProjectPage} />
               <Route path="/profile" component={ProfilePage} />

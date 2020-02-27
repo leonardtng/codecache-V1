@@ -62,10 +62,11 @@ const ProjectSpace: React.FC<ProjectSpaceProps> = (props: ProjectSpaceProps) => 
     } else {
       return projectList.sort((a: Project, b: Project) => { return (a.likes + a.commits + a.views) - (b.likes + b.commits + b.views) }).reverse();
     }
-
   }
 
-  const ProjectItems = sortProjectList(projectList, props.currentSort).map((project) => {
+  const clone = [...projectList];
+
+  const ProjectItems = sortProjectList(clone, props.currentSort).map((project) => {
     if (project.name.toLowerCase().includes(props.currentSearch.toLowerCase()) && compareFilter(project, props.currentFilter)) {
       return <Grid item xs={12} sm={3} key={project.id.toString()}>
         <ProjectCard

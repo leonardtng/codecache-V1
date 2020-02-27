@@ -21,7 +21,7 @@ const Logo: React.FC = () => {
   const history = useHistory();
   const handleClick = () => { 
     history.push("/");
-    window.location.reload();
+    // TODO Go back to top of page and clear search, filter and sort
   }
 
   return (

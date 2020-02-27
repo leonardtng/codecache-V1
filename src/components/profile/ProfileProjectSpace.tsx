@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 interface ProfileProjectSpaceProps {
   currentSearch: string;
   currentFilter: Array<string>;
+  currentSort: string;
   username: string;
   displayName: string;
   setDisplayName: (newDisplayName: string) => void;
@@ -57,7 +58,21 @@ const ProfileProjectSpace: React.FC<ProfileProjectSpaceProps> = (props: ProfileP
     return check
   }
 
-  const ProjectItems = projectList.map((project) => {
+  const sortProjectList = (projectList: Array<Project>, currentSort: string) => {
+    if (currentSort === 'Likes') {
+      return projectList.sort((a: Project, b: Project) => { return a.likes - b.likes }).reverse();
+    } else if (currentSort === 'Commits') {
+      return projectList.sort((a: Project, b: Project) => { return a.commits - b.commits }).reverse();
+    } else if (currentSort === 'Views') {
+      return projectList.sort((a: Project, b: Project) => { return a.views - b.views }).reverse();
+    } else {
+      return projectList.sort((a: Project, b: Project) => { return (a.likes + a.commits + a.views) - (b.likes + b.commits + b.views) }).reverse();
+    }
+  }
+
+  const clone = [...projectList];
+
+  const ProjectItems = sortProjectList(clone, props.currentSort).map((project) => {
     if (project.owner === props.username) {
       if (project.name.toLowerCase().includes(props.currentSearch.toLowerCase()) && compareFilter(project, props.currentFilter)) {
         return <Grid item xs={12} sm={4} key={project.id.toString()}>

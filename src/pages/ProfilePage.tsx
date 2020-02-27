@@ -68,6 +68,7 @@ const ProfilePage: React.FC = () => {
         return <ProfileProjectSpace
           currentSearch={currentSearch}
           currentFilter={currentFilter}
+          currentSort={currentSort}
           username={username}
           displayName={displayName}
           setDisplayName={setDisplayName}
