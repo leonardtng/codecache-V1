@@ -42,6 +42,7 @@ const MenuButton = () => {
 
   const history = useHistory();
   const handleClickLogout = () => { history.push("/"); }
+  
   const location = useLocation();
 
   return (

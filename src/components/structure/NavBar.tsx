@@ -5,6 +5,7 @@ import Logo from '../navigation/Logo';
 import SearchBar from '../navigation/SearchBar';
 import HeaderIcons from '../navigation/HeaderIcons';
 import FilterButton from '../navigation/FilterButton';
+import { useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,6 +30,31 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
+interface FilterButtonConditionalProps {
+  currentFilter: Array<string>;
+  changeCurrentFilter: (filter: string) => void;
+  currentSort: string;
+  changeCurrentSort: (sort: string) => void;
+  handleFilterOpen: () => void;
+  handleNavFilterOpen: () => void;
+}
+
+const FilterButtonConditional: React.FC<FilterButtonConditionalProps> = (props: FilterButtonConditionalProps) => {
+  const location = useLocation();
+  const nonProjectPages = ['/', '/profile'];
+
+  if (nonProjectPages.includes(location.pathname)) {
+    return <FilterButton
+      currentFilter={props.currentFilter}
+      changeCurrentFilter={props.changeCurrentFilter}
+      currentSort={props.currentSort}
+      changeCurrentSort={props.changeCurrentSort}
+      handleFilterOpen={props.handleFilterOpen}
+      handleNavFilterOpen={props.handleNavFilterOpen}
+    />
+  } return null
+}
 
 interface NavBarProps {
   currentSearch: string;
@@ -57,18 +83,18 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
       </Grid>
       <Grid item xs={3} className={classes.navcolor}>
         <div className={classes.divider} />
-        <SearchBar 
-          currentSearch={props.currentSearch} 
-          changeCurrentSearch={props.changeCurrentSearch} 
+        <SearchBar
+          currentSearch={props.currentSearch}
+          changeCurrentSearch={props.changeCurrentSearch}
         />
       </Grid>
       <Grid item xs={1} className={classes.navcolor}>
-        <FilterButton 
-          currentFilter={props.currentFilter} 
-          changeCurrentFilter={props.changeCurrentFilter} 
+        <FilterButtonConditional
+          currentFilter={props.currentFilter}
+          changeCurrentFilter={props.changeCurrentFilter}
           currentSort={props.currentSort}
           changeCurrentSort={props.changeCurrentSort}
-          handleFilterOpen={props.handleFilterOpen} 
+          handleFilterOpen={props.handleFilterOpen}
           handleNavFilterOpen={handleNavFilterOpen} 
         />
       </Grid>

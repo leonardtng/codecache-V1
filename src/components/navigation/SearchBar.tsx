@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 // import InputAdornment from '@material-ui/core/InputAdornment';
 // import SearchIcon from '@material-ui/icons/Search';
 import projectList from '../../data/projectList';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,6 +51,12 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   const classes = useStyles();
   const textfieldStyle = useOutlinedInputStyles();
 
+  const history = useHistory();
+  const handleSearchInProject = () => { history.push("/"); }
+  
+  const location = useLocation();
+  const nonProjectPages = ['/', '/profile'];
+
   return (
     <Autocomplete
       id="Search"
@@ -58,13 +65,26 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
       options={projectList}
       disableOpenOnFocus
       size='small'
-      onInputChange={(event: any, value: string) => { event.preventDefault(); props.changeCurrentSearch(value) }}
+      onInputChange={(event: any, value: string) => {
+        if (nonProjectPages.includes(location.pathname)) {
+          event.preventDefault();
+          props.changeCurrentSearch(value);
+        } else {
+          event.preventDefault();
+          handleSearchInProject();
+          props.changeCurrentSearch(value);
+        }
+      }}      
       autoComplete
       autoHighlight
       getOptionLabel={option => option.name}
       renderInput={params => (
         <TextField {...params} className={textfieldStyle.root} placeholder="Search..." variant="outlined"
           value={props.currentSearch}
+          onClick={() => {
+            if (!nonProjectPages.includes(location.pathname)) {
+              handleSearchInProject();
+          }}}
         // InputProps={{
         //   startAdornment: (
         //     <InputAdornment position="start">
