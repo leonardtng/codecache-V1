@@ -64,7 +64,7 @@ const ProfilePage: React.FC = () => {
         handleFilterOpen={handleFilterOpen}
       />
       <Grid container spacing={0} className={classes.filterSection} style={{ height: height }}></Grid>
-      <userState.Consumer>{({ username, displayName, setDisplayName, description, setDescription }) => {
+      <userState.Consumer>{({ username, displayName, setDisplayName, description, setDescription, profileImage, totalCommits, totalViews, totalLikes }) => {
         return <ProfileProjectSpace
           currentSearch={currentSearch}
           currentFilter={currentFilter}
@@ -74,6 +74,10 @@ const ProfilePage: React.FC = () => {
           setDisplayName={setDisplayName}
           description={description}
           setDescription={setDescription}
+          profileImage={profileImage}
+          totalCommits={totalCommits}
+          totalViews={totalViews}
+          totalLikes={totalLikes}
         />
       }}
       </userState.Consumer>

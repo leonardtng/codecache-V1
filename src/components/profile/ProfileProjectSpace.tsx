@@ -22,6 +22,10 @@ interface ProfileProjectSpaceProps {
   setDisplayName: (newDisplayName: string) => void;
   description: string;
   setDescription: (newDescription: string) => void;
+  profileImage: string;
+  totalCommits: number;
+  totalViews: number;
+  totalLikes: number;
 }
 
 const ProfileProjectSpace: React.FC<ProfileProjectSpaceProps> = (props: ProfileProjectSpaceProps) => {
@@ -102,9 +106,10 @@ const ProfileProjectSpace: React.FC<ProfileProjectSpaceProps> = (props: ProfileP
           setDisplayName={props.setDisplayName} 
           description={props.description} 
           setDescription={props.setDescription} 
-          projectCommits={10} 
-          totalProjectViews={200} 
-          totalLikes={30} 
+          profileImage={props.profileImage}
+          totalCommits={props.totalCommits} 
+          totalViews={props.totalViews} 
+          totalLikes={props.totalLikes} 
         />
       </Grid>
       <Grid item xs={12} sm={8} className={classes.adjustcard}>

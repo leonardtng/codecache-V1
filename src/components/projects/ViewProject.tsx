@@ -1,24 +1,28 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import ProjectOwner from './ProjectOwner';
 import ViewProjectCard from './ViewProjectCard';
 import ViewOthers from './ViewOthers';
 import { currentProjectView } from '../../contexts/CurrentProjectView';
+import projectList from '../../data/projectList';
 
 const ViewProject: React.FC = () => {
   return (
-    <Grid container spacing={0}>
-      <Grid item xs={1}>
+    <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
+      const project = projectList[projectid];
+      return <Grid container spacing={0}>
+        <Grid item xs={2}>
+          <ProjectOwner project={project} />
+        </Grid>
+        <Grid item xs={8}>
+          <ViewProjectCard project={project} />
+          <ViewOthers />
+        </Grid>
+        <Grid item xs={2}>
+        </Grid>
       </Grid>
-      <Grid item xs={10}>
-        <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
-          return <ViewProjectCard projectid={projectid} />
-        }}
-        </currentProjectView.Consumer>
-        <ViewOthers />
-      </Grid>
-      <Grid item xs={1}>
-      </Grid>
-    </Grid>
+    }}
+    </currentProjectView.Consumer>
   )
 }
 

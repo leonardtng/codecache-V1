@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { withStyles, makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import ShareButton from './ShareButton';
 import LoginAlert from '../login/LoginAlert';
-import { useLocation } from 'react-router';
-import { withStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -13,63 +13,67 @@ import IconButton from '@material-ui/core/IconButton';
 import MergeTypeIcon from '@material-ui/icons/MergeType';
 import GroupIcon from '@material-ui/icons/Group';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import ShareIcon from '@material-ui/icons/Share';
 import Typography from '@material-ui/core/Typography';
 import { userState } from '../../contexts/UserState';
-import projectList from '../../data/projectList';
-import { FacebookShareButton } from "react-share";
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: '100%',
-    padding: '5vh',
-  },
-  title: {
-    float: 'left',
-    paddingBottom: '3%',
-  },
-  projectimg: {
-    width: 400,
-    height: 400,
-    marginBottom: '3%',
-  },
-  description: {
-    textAlign: 'justify',
-    '& .MuiCardContent-root': {
-      padding: '3% 0',
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      maxWidth: '100%',
+      padding: '5vh',
     },
-  },
-  fontsize: {
-    '& .MuiGrid-item': {
-      margin: 'auto',
+    icongroup: {
+      textAlign: 'center',
+      paddingTop: '7vh',
+      paddingRight: '5vh',
     },
-    '& .MuiSvgIcon-root': {
-      height: '125%',
-      width: '125%',
+    title: {
+      float: 'left',
+      paddingBottom: '3%',
     },
-    fontSize: '0.7rem',
-  },
-  commiticon: {
-    paddingLeft: '50px',
-  },
-  icontext: {
-    paddingRight: '10px',
-  },
-  likebutton: {
-    '& .MuiIconButton-root': {
-      backgroundColor: '#FEC047',
+    projectimg: {
+      width: 400,
+      height: 400,
+      marginBottom: '3%',
     },
-  },
-  sharebutton: {
-    marginTop: '20px',
-    '& .MuiIconButton-root': {
-      backgroundColor: '#36E7E5',
+    description: {
+      textAlign: 'justify',
+      '& .MuiCardContent-root': {
+        padding: '3% 0',
+      },
     },
-  },
-  sideicontext: {
-    padding: '5px 0',
-  },
-});
+    fontsize: {
+      '& .MuiGrid-item': {
+        margin: 'auto',
+      },
+      '& .MuiSvgIcon-root': {
+        height: '125%',
+        width: '125%',
+      },
+      fontSize: '0.7rem',
+    },
+    commiticon: {
+      paddingLeft: '50px',
+    },
+    icontext: {
+      paddingRight: '10px',
+    },
+    likebutton: {
+      '& .MuiIconButton-root': {
+        backgroundColor: '#FEC047',
+      },
+    },
+    sharebutton: {
+      marginTop: '20px',
+      '& .MuiIconButton-root': {
+        backgroundColor: '#36E7E5',
+      },
+    },
+    sideicontext: {
+      padding: '5px 0',
+    },
+  }),
+);
 
 const HtmlTooltip = withStyles((theme: Theme) => ({
   tooltip: {
@@ -82,15 +86,25 @@ const HtmlTooltip = withStyles((theme: Theme) => ({
 }))(Tooltip);
 
 interface ViewProjectCardProps {
-  projectid: number;
-};
+  project: {
+    id: number;
+    owner: string;
+    img: string;
+    name: string;
+    description: string;
+    commits: number;
+    views: number;
+    likes: number;
+    collaborators: number;
+    tags: string[];
+  };
+}
 
 const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardProps) => {
   const classes = useStyles();
-  const project = projectList[props.projectid];
 
   const [color, setColor] = useState<string>("#ffffff");
-  const [currentLikes, setCurrentLikes] = useState<number>(project.likes);
+  const [currentLikes, setCurrentLikes] = useState<number>(props.project.likes);
 
   const handleClickLike = () => {
     if (color === "#ffffff") {
@@ -104,12 +118,10 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
     // Need to update the likes in the project in the database
   };
 
-  const location = useLocation();
-
   return (
     <Card className={classes.root}>
       <Grid container spacing={0}>
-        <Grid item xs={2} >
+        <Grid item xs={2} className={classes.icongroup} >
           <div className={classes.likebutton}>
             <userState.Consumer>{({ isLoggedIn }) => {
               if (isLoggedIn) {
@@ -124,25 +136,13 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
               <div className={classes.sideicontext}>Like</div>
             </Typography>
           </div>
-          <div className={classes.sharebutton}>
-          <FacebookShareButton
-            url={location.pathname}
-            quote={'Check this out! Amazing project called ' + project.name + ' on CodeCachenow!'}
-          >
-              <IconButton aria-label="share" style={{ color: "#ffffff" }}>
-                <ShareIcon />
-              </IconButton>
-              <Typography variant="body2" color="textSecondary" component="p">
-                <div className={classes.sideicontext}>Share</div>
-              </Typography>
-          </FacebookShareButton>
-          </div>
+          <ShareButton project={props.project} />
         </Grid>
         <Grid item xs={8}>
           <Grid container spacing={0}>
             <Grid item xs={12}>
               <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                {project.name}
+                {props.project.name}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -150,16 +150,16 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
                 <CardMedia
                   component="img"
                   className={classes.projectimg}
-                  alt={project.name}
-                  image={project.img}
-                  title={project.name}
+                  alt={props.project.name}
+                  image={props.project.img}
+                  title={props.project.name}
                 />
               </CardActionArea>
             </Grid>
             <Grid item xs={12} className={classes.description}>
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {project.description}
+                  {props.project.description}
                 </Typography>
               </CardContent>
             </Grid>
@@ -180,7 +180,7 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
                   </div>
                 </HtmlTooltip>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  <span className={classes.icontext}>Collaborators</span> {project.collaborators}
+                  <span className={classes.icontext}>Collaborators</span> {props.project.collaborators}
                 </Typography>
                 <HtmlTooltip
                   className={classes.commiticon}
@@ -198,7 +198,7 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
                   </div>
                 </HtmlTooltip>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  <span className={classes.icontext}>Commits</span> {project.commits}
+                  <span className={classes.icontext}>Commits</span> {props.project.commits}
                 </Typography>
               </CardActions>
             </Grid>

@@ -10,7 +10,7 @@ import img7 from '../images/projectImages/forest-stock.jpg';
 import img8 from '../images/projectImages/wolf-stock.jpg';
 import img9 from '../images/projectImages/dragon-stock.jpg';
 import img10 from '../images/projectImages/totoro-horizontal.jpg';
- 
+
 var projectList = [
   {
     id: 0,
@@ -89,7 +89,7 @@ var projectList = [
     collaborators: 1,
     tags: ['Java'],
   },
-  
+
   {
     id: 6,
     owner: 'serenetay',

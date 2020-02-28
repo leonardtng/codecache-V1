@@ -1,5 +1,4 @@
-import React from 'react'
-import ProfileImage from '../../images/ProfileImage.png'
+import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -49,8 +48,9 @@ interface ProfileCardProps {
   setDisplayName: (newDisplayName: string) => void;
   description: string;
   setDescription: (newDescription: string) => void;
-  projectCommits: number;
-  totalProjectViews: number;
+  profileImage: string;
+  totalCommits: number;
+  totalViews: number;
   totalLikes: number;
 }
 
@@ -62,7 +62,7 @@ const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
       <Card className={classes.card}>
         <div className={classes.imagesectionheight}>
           <CardActionArea>
-            <Avatar alt={props.displayName} src={ProfileImage} className={classes.avatarlarge} />
+            <Avatar alt={props.displayName} src={props.profileImage} className={classes.avatarlarge} />
           </CardActionArea>
         </div>
         <CardContent>
@@ -83,14 +83,14 @@ const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
                 <MergeTypeIcon />
               </ListItemIcon>
               <ListItemText primary="Project Commits" />
-              <ListItemText primary={props.projectCommits} className={classes.alignright} />
+              <ListItemText primary={props.totalCommits} className={classes.alignright} />
             </ListItem>
             <ListItem>
               <ListItemIcon>
                 <VisibilityIcon />
               </ListItemIcon>
               <ListItemText primary="Total Project Views" />
-              <ListItemText primary={props.totalProjectViews} className={classes.alignright} />
+              <ListItemText primary={props.totalViews} className={classes.alignright} />
             </ListItem>
             <ListItem>
               <ListItemIcon>
