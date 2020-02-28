@@ -26,7 +26,6 @@ const ProfilePage: React.FC = () => {
     setCurrentSearch(search);
   }
   
-
   const [currentFilter, setCurrentFilter] = useState<Array<string>>([]);
   const newFilter: Array<string> = [];
   const changeCurrentFilter = (filter: string) => {

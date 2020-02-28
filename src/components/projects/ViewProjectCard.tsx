@@ -142,7 +142,7 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
           <Grid container spacing={0}>
             <Grid item xs={12}>
               <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                {props.project.name}
+                <b>{props.project.name}</b>
               </Typography>
             </Grid>
             <Grid item xs={12}>
