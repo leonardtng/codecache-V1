@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme: Theme) =>
       objectFit: 'contain',
       marginLeft: 'auto',
     },
+    logocontain: {
+      width: '125%',
+      height: '125%',
+    },
   }),
 );
 
@@ -27,8 +31,8 @@ const Logo: React.FC = () => {
 
   return (
     <currentProjectView.Consumer>{(context) => {
-      return <Button className={classes.logostyle} onClick={() => { context.handleSetNavProject(false); handleClick() }}>
-        <img src={logo} alt="codecache" />
+      return <Button className={classes.logostyle} fullWidth onClick={() => { context.handleSetNavProject(false); handleClick() }}>
+        <img className={classes.logocontain} src={logo} alt="codecache" />
       </Button>
     }}
     </currentProjectView.Consumer>

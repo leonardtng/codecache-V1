@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import MergeTypeIcon from '@material-ui/icons/MergeType';
 import GroupIcon from '@material-ui/icons/Group';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
@@ -41,6 +42,11 @@ const useStyles = makeStyles((theme: Theme) =>
       '& .MuiCardContent-root': {
         padding: '3% 0',
       },
+    },
+    tagsheader: {
+      fontSize: '16px',
+      paddingTop: '4%',
+      paddingBottom: '1%',
     },
     fontsize: {
       '& .MuiGrid-item': {
@@ -161,6 +167,14 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
                 <Typography variant="body2" color="textSecondary" component="p">
                   {props.project.description}
                 </Typography>
+                <Typography className={classes.tagsheader} variant="h5" color="textPrimary">
+                  Tags
+                  </Typography>
+                <Typography variant="subtitle2" color="textSecondary" component="p">
+                  {props.project.tags.map((tag: string) => {
+                    return <Button>{tag}</Button>
+                  })}
+                </Typography>
               </CardContent>
             </Grid>
             <Grid item xs={12}>
@@ -169,7 +183,7 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
                   title={
                     <React.Fragment>
                       <Typography color="inherit">Collaborators</Typography>
-                      <em>{"Number of project owners"}</em>
+                      <em>{"Number of people working on this project with read, write and admin permissions"}</em>
                     </React.Fragment>
                   }
                 >

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     buttonroot: {
       '& .MuiButton-root': {
-        margin: '5.1%',
+        margin: '0.6rem 0',
         padding: '2.4% 0',
         minWidth: '27%',
       },

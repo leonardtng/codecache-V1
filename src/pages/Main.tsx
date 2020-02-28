@@ -46,7 +46,7 @@ const Main: React.FC = () => {
 
   const handleFilterOpen = () => {
     setFilterOpen(prev => !prev);
-    filterOpen ? setHeight(40) : setHeight(100);
+    filterOpen ? setHeight(40) : setHeight(120);
   }
 
   return (

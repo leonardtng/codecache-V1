@@ -44,12 +44,12 @@ const ProfilePage: React.FC = () => {
     setCurrentSort(sort);
   }
 
-  const [height, setHeight] = useState<number>(50);
+  const [height, setHeight] = useState<number>(40);
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
 
   const handleFilterOpen = () => {
     setFilterOpen(prev => !prev);
-    filterOpen ? setHeight(50) : setHeight(100);
+    filterOpen ? setHeight(40) : setHeight(120);
   }
 
   return (

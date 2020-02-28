@@ -13,6 +13,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MergeTypeIcon from '@material-ui/icons/MergeType';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import { userState } from '../../contexts/UserState';
+import { currentProfileView } from '../../contexts/CurrentProfileView';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -73,7 +75,15 @@ const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
             {props.description}
           </Typography>
           <div className={classes.alignright}>
-            <EditProfile displayName={props.displayName} description={props.description} editDisplayName={props.setDisplayName} editDescription={props.setDescription} />
+            <currentProfileView.Consumer>{(profileContext) => {
+              return <userState.Consumer>{(userContext) => {
+                if (userContext.isLoggedIn && (profileContext.profileid === userContext.id)) {
+                  return <EditProfile displayName={props.displayName} description={props.description} editDisplayName={props.setDisplayName} editDescription={props.setDescription} />
+                } return null
+              }}
+              </userState.Consumer>
+            }}
+            </currentProfileView.Consumer>
           </div>
         </CardContent>
         <CardContent>

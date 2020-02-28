@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '0 15%',
     },
     viewprofilebutton: {
-      fontSize: '12px',
+      fontSize: '0.6rem',
       float: 'right',
     },
     small: {
@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     projectowner: {
       textAlign: 'left',
+      fontSize: '1rem',
       paddingTop: '12px',
       paddingLeft: '13px',
     },
