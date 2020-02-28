@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import accountsList from '../../data/accountsList';
 import { useHistory } from "react-router-dom";
+import { currentProfileView } from '../../contexts/CurrentProfileView';
+import { currentProjectView } from '../../contexts/CurrentProjectView';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -70,7 +72,7 @@ const ProjectOwner: React.FC<ProjectOwnerProps> = (props: ProjectOwnerProps) => 
 
   const history = useHistory();
   const handleClickViewProfile = () => {
-    history.push("/profile");
+    history.push('/' + owner.username);
   };
 
   return (
@@ -87,9 +89,15 @@ const ProjectOwner: React.FC<ProjectOwnerProps> = (props: ProjectOwnerProps) => 
               {owner.username}
             </Typography>
             <CardActions>
-              <Button size="small" className={classes.viewprofilebutton} onClick={handleClickViewProfile}>
-                View Profile
-            </Button>
+              <currentProjectView.Consumer>{(context) => {
+                return <currentProfileView.Consumer>{(profileContext) => {
+                  return <Button size="small" className={classes.viewprofilebutton} onClick={() => { profileContext.toggleProfileid(owner.id); context.handleSetNavProject(false); handleClickViewProfile() }}>
+                    View Profile
+                </Button>
+                }}
+                </currentProfileView.Consumer>
+              }}
+              </currentProjectView.Consumer>
             </CardActions>
           </Grid>
         </Grid>

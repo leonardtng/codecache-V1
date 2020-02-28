@@ -2,24 +2,34 @@ import React, { createContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const currentProjectView = createContext(
-  { projectid: 0,
-    toggleProjectid: (id: number) => {},
-  } 
+  {
+    navProject: false,
+    handleSetNavProject: (boolean: boolean) => { },
+    projectid: 0,
+    toggleProjectid: (id: number) => { },
+  }
 );
 
 const CurrentProjectView: React.FC = (props) => {
+  const [navProject, setNavProject] = useState<boolean>(false);
+  const handleSetNavProject = (boolean: boolean) => {
+    setNavProject(boolean);
+  }
+
   const location = useLocation();
-  
+
   const ref = Number(location.pathname.split('/').slice(-2)[0]);
 
   const [projectid, setProjectid] = useState<number>(ref);
-  const toggleProjectid = (id: number) => { 
-      setProjectid(id);
-   };
+  const toggleProjectid = (id: number) => {
+    setProjectid(id);
+  };
 
   return (
-    <currentProjectView.Provider 
-    value={{ 
+    <currentProjectView.Provider
+      value={{
+        navProject: navProject,
+        handleSetNavProject: handleSetNavProject,
         projectid: projectid,
         toggleProjectid: toggleProjectid,
       }}

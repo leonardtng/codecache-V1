@@ -9,6 +9,7 @@ import UserState from './contexts/UserState';
 import CurrentProjectView, { currentProjectView } from './contexts/CurrentProjectView';
 import CurrentProfileView, { currentProfileView } from './contexts/CurrentProfileView';
 import projectList from './data/projectList';
+import accountsList from './data/accountsList';
 
 const App: React.FC = () => {
 
@@ -17,6 +18,10 @@ const App: React.FC = () => {
     return path
   };
 
+  const handleProfilePath = (profileid: number) => {
+    const path = '/' + accountsList[profileid].username;
+    return path
+  }
 
   return (
     <UserState>
@@ -25,12 +30,14 @@ const App: React.FC = () => {
         <CurrentProfileView>
           <CurrentProjectView>
             <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
-              console.log(projectid);
-              return <Switch>
-                <Route path={handleProjectPath(projectid)} component={ProjectPage} />
-                <Route path="/profile" component={ProfilePage} />
-                <Route path="/" component={Main} />
-              </Switch>
+              return <currentProfileView.Consumer>{({ profileid, toggleProfileid }) => {
+                return <Switch>
+                  <Route path={handleProjectPath(projectid)} component={ProjectPage} />
+                  <Route path={handleProfilePath(profileid)} component={ProfilePage} />
+                  <Route path="/" component={Main} />
+                </Switch>
+              }}
+              </currentProfileView.Consumer>
             }}
             </currentProjectView.Consumer>
           </CurrentProjectView>

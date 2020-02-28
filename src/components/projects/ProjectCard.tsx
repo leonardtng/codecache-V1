@@ -101,9 +101,9 @@ const ProjectCard: React.FC<ProjectCardProps> = (props: ProjectCardProps) => {
   return (
     <div className={classes.cardoutline}>
       <Card className={classes.card}>
-        <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
+        <currentProjectView.Consumer>{(context) => {
           return <CardActionArea 
-                    onClick={() => { toggleProjectid(props.id);  handleClickCard(props.id, props.name) }} 
+                    onClick={() => { context.toggleProjectid(props.id); context.handleSetNavProject(true); handleClickCard(props.id, props.name) }} 
                     onMouseEnter={() => setShowDescription(true)} 
                     onMouseLeave={() => setShowDescription(false)}
                   >

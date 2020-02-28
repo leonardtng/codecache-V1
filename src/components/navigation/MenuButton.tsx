@@ -5,7 +5,8 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { userState } from '../../contexts/UserState';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { currentProjectView } from '../../contexts/CurrentProjectView';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,8 +43,6 @@ const MenuButton = () => {
 
   const history = useHistory();
   const handleClickLogout = () => { history.push("/"); }
-  
-  const location = useLocation();
 
   return (
     <span className={classes.root}>
@@ -51,32 +50,32 @@ const MenuButton = () => {
         <MoreHorizIcon className={classes.iconstyle} fontSize="small" />
       </IconButton>
       <Menu
-      id="menu"
-      classes={{ paper: classes.menubg }}
-      disableScrollLock={true}
-      anchorEl={anchorEl}
-      keepMounted
-      open={Boolean(anchorEl)}
-      onClose={handleClose}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-    >
-      <MenuItem className={classes.menuitemstyle}>Help</MenuItem>
-      <userState.Consumer>{({ isLoggedIn, toggleLogin }) => {
-        if (location.pathname === '/profile') {
-          return <MenuItem className={classes.menuitemstyle} onClick={() => { toggleLogin(); handleClickLogout(); window.location.reload() }}>Logout</MenuItem>
-        }
-        return <MenuItem className={classes.menuitemstyle} onClick={() => { toggleLogin(); handleClickLogout(); window.location.reload() }}>Logout</MenuItem>
-      }}
-      </userState.Consumer>
-    </Menu>
-    </span>
+        id="menu"
+        classes={{ paper: classes.menubg }}
+        disableScrollLock={true}
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem className={classes.menuitemstyle}>Help</MenuItem>
+        <currentProjectView.Consumer>{(projectContext) => {
+          return <userState.Consumer>{(context) => {
+            return <MenuItem className={classes.menuitemstyle} onClick={() => { context.toggleLogin(); projectContext.handleSetNavProject(false); handleClickLogout(); window.location.reload() }}>Logout</MenuItem>
+          }}
+          </userState.Consumer>
+        }}
+        </currentProjectView.Consumer>
+      </Menu>
+    </span >
   );
 }
 

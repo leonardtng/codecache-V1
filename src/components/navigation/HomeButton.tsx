@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
+import { currentProjectView } from '../../contexts/CurrentProjectView';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,9 +25,12 @@ const HomeButton: React.FC = () => {
 
   return (
     <span className={classes.buttonroot}>
-      <Button size="small" className={classes.iconstyle} onClick={handleClick}>
-        Home
-      </Button>
+      <currentProjectView.Consumer>{(context) => {
+        return <Button size="small" className={classes.iconstyle} onClick={() => {context.handleSetNavProject(false); handleClick()}}>
+          Home
+        </Button>
+      }}
+      </currentProjectView.Consumer>
     </span>
   )
 }

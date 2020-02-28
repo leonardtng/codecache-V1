@@ -1,7 +1,9 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
+import { userState } from '../../contexts/UserState';
 import { useHistory } from "react-router-dom";
+import { currentProjectView } from '../../contexts/CurrentProjectView';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,14 +22,19 @@ const useStyles = makeStyles((theme: Theme) =>
 const ProfileButton: React.FC = () => {
   const classes = useStyles();
   const history = useHistory();
-  const handleClick = () => { history.push("/profile") };
+  const handleClick = (username: string) => { history.push('/' + username) };
 
   return (
     <span className={classes.buttonroot}>
-      <Button size="small" className={classes.iconstyle} onClick={handleClick}>
-        Profile
+      <currentProjectView.Consumer>{(context) => {
+      return <userState.Consumer>{(userContext) => {
+        return <Button size="small" className={classes.iconstyle} onClick={() => {context.handleSetNavProject(false); handleClick(userContext.username)}}>
+          Profile
       </Button>
-    </span>
+      }}</userState.Consumer>
+    }}
+    </currentProjectView.Consumer>
+    </span >
   );
 }
 

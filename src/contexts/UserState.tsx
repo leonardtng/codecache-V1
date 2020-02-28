@@ -3,6 +3,7 @@ import accountsList from '../data/accountsList';
 
 export const userState = createContext(
   {
+    id: 0,
     isLoggedIn: false,
     toggleLogin: () => { },
     username: '',
@@ -23,6 +24,7 @@ const UserState: React.FC = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const toggleLogin = () => { isLoggedIn ? setIsLoggedIn(false) : setIsLoggedIn(true); };
 
+  const id = defaultAccount.id
   const username = defaultAccount.username; //Get from github
 
   const [displayName, setDisplayName] = useState<string>(username);
@@ -43,6 +45,7 @@ const UserState: React.FC = (props) => {
       value={{
         isLoggedIn: isLoggedIn,
         toggleLogin: toggleLogin,
+        id: id,
         username: username,
         displayName: displayName,
         setDisplayName: changeDisplayName,

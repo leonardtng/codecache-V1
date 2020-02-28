@@ -5,7 +5,7 @@ import Logo from '../navigation/Logo';
 import SearchBar from '../navigation/SearchBar';
 import HeaderIcons from '../navigation/HeaderIcons';
 import FilterButton from '../navigation/FilterButton';
-import { useLocation } from 'react-router-dom';
+import { currentProjectView } from '../../contexts/CurrentProjectView';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,19 +41,22 @@ interface FilterButtonConditionalProps {
 }
 
 const FilterButtonConditional: React.FC<FilterButtonConditionalProps> = (props: FilterButtonConditionalProps) => {
-  const location = useLocation();
-  const nonProjectPages = ['/', '/profile'];
-
-  if (nonProjectPages.includes(location.pathname)) {
-    return <FilterButton
-      currentFilter={props.currentFilter}
-      changeCurrentFilter={props.changeCurrentFilter}
-      currentSort={props.currentSort}
-      changeCurrentSort={props.changeCurrentSort}
-      handleFilterOpen={props.handleFilterOpen}
-      handleNavFilterOpen={props.handleNavFilterOpen}
-    />
-  } return null
+  return (
+    <currentProjectView.Consumer>{(context) => {
+      if (context.navProject) {
+        return null
+      }
+      return <FilterButton
+        currentFilter={props.currentFilter}
+        changeCurrentFilter={props.changeCurrentFilter}
+        currentSort={props.currentSort}
+        changeCurrentSort={props.changeCurrentSort}
+        handleFilterOpen={props.handleFilterOpen}
+        handleNavFilterOpen={props.handleNavFilterOpen}
+      />
+    }}
+    </currentProjectView.Consumer>
+  );
 }
 
 interface NavBarProps {
@@ -95,7 +98,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
           currentSort={props.currentSort}
           changeCurrentSort={props.changeCurrentSort}
           handleFilterOpen={props.handleFilterOpen}
-          handleNavFilterOpen={handleNavFilterOpen} 
+          handleNavFilterOpen={handleNavFilterOpen}
         />
       </Grid>
       <Grid item xs={4} className={classes.navcolor}>

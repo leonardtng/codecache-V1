@@ -5,6 +5,8 @@ import NavBar from '../components/structure/NavBar';
 import ProfileProjectSpace from '../components/profile/ProfileProjectSpace';
 import { userState } from '../contexts/UserState';
 import Footer from '../components/structure/Footer';
+import { currentProfileView } from '../contexts/CurrentProfileView';
+import accountsList from '../data/accountsList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,7 +27,7 @@ const ProfilePage: React.FC = () => {
   const changeCurrentSearch = (search: string) => {
     setCurrentSearch(search);
   }
-  
+
   const [currentFilter, setCurrentFilter] = useState<Array<string>>([]);
   const newFilter: Array<string> = [];
   const changeCurrentFilter = (filter: string) => {
@@ -42,12 +44,12 @@ const ProfilePage: React.FC = () => {
     setCurrentSort(sort);
   }
 
-  const [height, setHeight] = useState<number>(40);
+  const [height, setHeight] = useState<number>(50);
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
 
   const handleFilterOpen = () => {
     setFilterOpen(prev => !prev);
-    filterOpen ? setHeight(40) : setHeight(100);
+    filterOpen ? setHeight(50) : setHeight(100);
   }
 
   return (
@@ -63,23 +65,44 @@ const ProfilePage: React.FC = () => {
         handleFilterOpen={handleFilterOpen}
       />
       <Grid container spacing={0} className={classes.filterSection} style={{ height: height }}></Grid>
-      <userState.Consumer>{({ username, displayName, setDisplayName, description, setDescription, profileImage, totalCommits, totalViews, totalLikes }) => {
-        return <ProfileProjectSpace
-          currentSearch={currentSearch}
-          currentFilter={currentFilter}
-          currentSort={currentSort}
-          username={username}
-          displayName={displayName}
-          setDisplayName={setDisplayName}
-          description={description}
-          setDescription={setDescription}
-          profileImage={profileImage}
-          totalCommits={totalCommits}
-          totalViews={totalViews}
-          totalLikes={totalLikes}
-        />
+      <currentProfileView.Consumer>{({ profileid, toggleProfileid }) => {
+        return <userState.Consumer>{({ id, username, displayName, setDisplayName, description, setDescription, profileImage, totalCommits, totalViews, totalLikes }) => {
+          if (profileid === id) {
+            return <ProfileProjectSpace
+            currentSearch={currentSearch}
+            currentFilter={currentFilter}
+            currentSort={currentSort}
+            username={username}
+            displayName={displayName}
+            setDisplayName={setDisplayName}
+            description={description}
+            setDescription={setDescription}
+            profileImage={profileImage}
+            totalCommits={totalCommits}
+            totalViews={totalViews}
+            totalLikes={totalLikes}
+          />
+          } else {
+            const profile = accountsList[profileid];
+            return <ProfileProjectSpace
+            currentSearch={currentSearch}
+            currentFilter={currentFilter}
+            currentSort={currentSort}
+            username={profile.username}
+            displayName={profile.username}
+            setDisplayName={setDisplayName}
+            description={profile.description}
+            setDescription={setDescription}
+            profileImage={profile.img}
+            totalCommits={profile.commits}
+            totalViews={profile.views}
+            totalLikes={profile.likes}
+          />
+          }
+        }}
+        </userState.Consumer>
       }}
-      </userState.Consumer>
+      </currentProfileView.Consumer>
       <Footer />
     </div >
   );
