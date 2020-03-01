@@ -129,8 +129,8 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
       <Grid container spacing={0}>
         <Grid item xs={2} className={classes.icongroup} >
           <div className={classes.likebutton}>
-            <userState.Consumer>{({ isLoggedIn }) => {
-              if (isLoggedIn) {
+            <userState.Consumer>{(userContext) => {
+              if (userContext.isLoggedIn) {
                 return <IconButton aria-label="likes" style={{ color: color }} onClick={handleClickLike}>
                   <ThumbUpAltIcon />
                 </IconButton>

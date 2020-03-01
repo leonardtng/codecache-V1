@@ -65,39 +65,39 @@ const ProfilePage: React.FC = () => {
         handleFilterOpen={handleFilterOpen}
       />
       <Grid container spacing={0} className={classes.filterSection} style={{ height: height }}></Grid>
-      <currentProfileView.Consumer>{({ profileid, toggleProfileid }) => {
-        return <userState.Consumer>{({ id, username, displayName, setDisplayName, description, setDescription, profileImage, totalCommits, totalViews, totalLikes }) => {
-          if (profileid === id) {
+      <currentProfileView.Consumer>{(profileContext) => {
+        return <userState.Consumer>{(userContext) => {
+          if (profileContext.profileid === userContext.id) {
             return <ProfileProjectSpace
-            currentSearch={currentSearch}
-            currentFilter={currentFilter}
-            currentSort={currentSort}
-            username={username}
-            displayName={displayName}
-            setDisplayName={setDisplayName}
-            description={description}
-            setDescription={setDescription}
-            profileImage={profileImage}
-            totalCommits={totalCommits}
-            totalViews={totalViews}
-            totalLikes={totalLikes}
-          />
+              currentSearch={currentSearch}
+              currentFilter={currentFilter}
+              currentSort={currentSort}
+              username={userContext.username}
+              displayName={userContext.displayName}
+              setDisplayName={userContext.setDisplayName}
+              description={userContext.description}
+              setDescription={userContext.setDescription}
+              profileImage={userContext.profileImage}
+              totalCommits={userContext.totalCommits}
+              totalViews={userContext.totalViews}
+              totalLikes={userContext.totalLikes}
+            />
           } else {
-            const profile = accountsList[profileid];
+            const profile = accountsList[profileContext.profileid];
             return <ProfileProjectSpace
-            currentSearch={currentSearch}
-            currentFilter={currentFilter}
-            currentSort={currentSort}
-            username={profile.username}
-            displayName={profile.username}
-            setDisplayName={setDisplayName}
-            description={profile.description}
-            setDescription={setDescription}
-            profileImage={profile.img}
-            totalCommits={profile.commits}
-            totalViews={profile.views}
-            totalLikes={profile.likes}
-          />
+              currentSearch={currentSearch}
+              currentFilter={currentFilter}
+              currentSort={currentSort}
+              username={profile.username}
+              displayName={profile.username}
+              setDisplayName={userContext.setDisplayName}
+              description={profile.description}
+              setDescription={userContext.setDescription}
+              profileImage={profile.img}
+              totalCommits={profile.commits}
+              totalViews={profile.views}
+              totalLikes={profile.likes}
+            />
           }
         }}
         </userState.Consumer>

@@ -90,9 +90,9 @@ const ProjectOwner: React.FC<ProjectOwnerProps> = (props: ProjectOwnerProps) => 
               {owner.username}
             </Typography>
             <CardActions>
-              <currentProjectView.Consumer>{(context) => {
+              <currentProjectView.Consumer>{(projectContext) => {
                 return <currentProfileView.Consumer>{(profileContext) => {
-                  return <Button size="small" className={classes.viewprofilebutton} onClick={() => { profileContext.toggleProfileid(owner.id); context.handleSetNavProject(false); handleClickViewProfile() }}>
+                  return <Button size="small" className={classes.viewprofilebutton} onClick={() => { profileContext.toggleProfileid(owner.id); projectContext.handleSetNavProject(false); handleClickViewProfile() }}>
                     View Profile
                 </Button>
                 }}

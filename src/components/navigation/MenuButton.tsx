@@ -68,8 +68,8 @@ const MenuButton = () => {
       >
         <MenuItem className={classes.menuitemstyle}>Help</MenuItem>
         <currentProjectView.Consumer>{(projectContext) => {
-          return <userState.Consumer>{(context) => {
-            return <MenuItem className={classes.menuitemstyle} onClick={() => { context.toggleLogin(); projectContext.handleSetNavProject(false); handleClickLogout(); window.location.reload() }}>Logout</MenuItem>
+          return <userState.Consumer>{(userContext) => {
+            return <MenuItem className={classes.menuitemstyle} onClick={() => { userContext.toggleLogin(); projectContext.handleSetNavProject(false); handleClickLogout(); window.location.reload() }}>Logout</MenuItem>
           }}
           </userState.Consumer>
         }}

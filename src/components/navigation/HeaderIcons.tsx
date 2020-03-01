@@ -28,8 +28,8 @@ const HeaderIcons: React.FC = () => {
 
   return (
     <Grid item xs={3} className={classes.navcolor}>
-      <userState.Consumer>{({ isLoggedIn, toggleLogin }) => {
-        if (isLoggedIn) {
+      <userState.Consumer>{(userContext) => {
+        if (userContext.isLoggedIn) {
           return <Grid container spacing={0}>
             <Grid item xs={8}>
               <Grid container spacing={0}>

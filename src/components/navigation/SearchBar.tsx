@@ -56,7 +56,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   const handleSearchInProject = () => { history.push("/"); }
 
   return (
-    <currentProjectView.Consumer>{(context) => {
+    <currentProjectView.Consumer>{(projectContext) => {
       return <Autocomplete
         id="Search"
         className={classes.root}
@@ -65,10 +65,10 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         disableOpenOnFocus
         size='small'
         onInputChange={(event: any, value: string) => {
-          if (context.navProject) {
+          if (projectContext.navProject) {
             event.preventDefault();
             handleSearchInProject();
-            context.handleSetNavProject(false);
+            projectContext.handleSetNavProject(false);
             props.changeCurrentSearch(value);
           } else {
             event.preventDefault();
@@ -82,9 +82,9 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
           <TextField {...params} className={textfieldStyle.root} placeholder="Search..." variant="outlined"
             value={props.currentSearch}
             onClick={() => {
-              if (context.navProject) {
+              if (projectContext.navProject) {
                 handleSearchInProject();
-                context.handleSetNavProject(false);
+                projectContext.handleSetNavProject(false);
               }
             }}
           // InputProps={{

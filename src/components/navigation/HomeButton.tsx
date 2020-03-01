@@ -25,8 +25,8 @@ const HomeButton: React.FC = () => {
 
   return (
     <span className={classes.buttonroot}>
-      <currentProjectView.Consumer>{(context) => {
-        return <Button size="small" className={classes.iconstyle} onClick={() => {context.handleSetNavProject(false); handleClick()}}>
+      <currentProjectView.Consumer>{(projectContext) => {
+        return <Button size="small" className={classes.iconstyle} onClick={() => {projectContext.handleSetNavProject(false); handleClick()}}>
           Home
         </Button>
       }}

@@ -8,8 +8,8 @@ import projectList from '../../data/projectList';
 
 const ViewProject: React.FC = () => {
   return (
-    <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
-      const project = projectList[projectid];
+    <currentProjectView.Consumer>{(projectContext) => {
+      const project = projectList[projectContext.projectid];
       return <Grid container spacing={0}>
         <Grid item xs={2}>
           <ProjectOwner project={project} />

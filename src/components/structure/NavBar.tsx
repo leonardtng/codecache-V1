@@ -31,34 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface FilterButtonConditionalProps {
-  currentFilter: Array<string>;
-  changeCurrentFilter: (filter: string) => void;
-  currentSort: string;
-  changeCurrentSort: (sort: string) => void;
-  handleFilterOpen: () => void;
-  handleNavFilterOpen: () => void;
-}
-
-const FilterButtonConditional: React.FC<FilterButtonConditionalProps> = (props: FilterButtonConditionalProps) => {
-  return (
-    <currentProjectView.Consumer>{(context) => {
-      if (context.navProject) {
-        return null
-      }
-      return <FilterButton
-        currentFilter={props.currentFilter}
-        changeCurrentFilter={props.changeCurrentFilter}
-        currentSort={props.currentSort}
-        changeCurrentSort={props.changeCurrentSort}
-        handleFilterOpen={props.handleFilterOpen}
-        handleNavFilterOpen={props.handleNavFilterOpen}
-      />
-    }}
-    </currentProjectView.Consumer>
-  );
-}
-
 interface NavBarProps {
   currentSearch: string;
   changeCurrentSearch: (search: string) => void;
@@ -92,14 +64,20 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
         />
       </Grid>
       <Grid item xs={1} className={classes.navcolor}>
-        <FilterButtonConditional
-          currentFilter={props.currentFilter}
-          changeCurrentFilter={props.changeCurrentFilter}
-          currentSort={props.currentSort}
-          changeCurrentSort={props.changeCurrentSort}
-          handleFilterOpen={props.handleFilterOpen}
-          handleNavFilterOpen={handleNavFilterOpen}
-        />
+        <currentProjectView.Consumer>{(projectContext) => {
+          if (projectContext.navProject) {
+            return null
+          }
+          return <FilterButton
+            currentFilter={props.currentFilter}
+            changeCurrentFilter={props.changeCurrentFilter}
+            currentSort={props.currentSort}
+            changeCurrentSort={props.changeCurrentSort}
+            handleFilterOpen={props.handleFilterOpen}
+            handleNavFilterOpen={handleNavFilterOpen}
+          />
+        }}
+        </currentProjectView.Consumer>
       </Grid>
       <Grid item xs={4} className={classes.navcolor}>
       </Grid>

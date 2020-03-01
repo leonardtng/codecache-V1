@@ -29,11 +29,11 @@ const App: React.FC = () => {
         <ScrollToTop />
         <CurrentProfileView>
           <CurrentProjectView>
-            <currentProjectView.Consumer>{({ projectid, toggleProjectid }) => {
-              return <currentProfileView.Consumer>{({ profileid, toggleProfileid }) => {
+            <currentProjectView.Consumer>{(projectContext) => {
+              return <currentProfileView.Consumer>{(profileContext) => {
                 return <Switch>
-                  <Route path={handleProjectPath(projectid)} component={ProjectPage} />
-                  <Route path={handleProfilePath(profileid)} component={ProfilePage} />
+                  <Route path={handleProjectPath(projectContext.projectid)} component={ProjectPage} />
+                  <Route path={handleProfilePath(profileContext.profileid)} component={ProfilePage} />
                   <Route path="/" component={Main} />
                 </Switch>
               }}

@@ -41,12 +41,12 @@ const ProjectPage: React.FC = () => {
     setCurrentSort(sort);
   }
 
-  const [height, setHeight] = useState<number>(40);
+  const [height, setHeight] = useState<number>(60);
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
 
   const handleFilterOpen = () => {
     setFilterOpen(prev => !prev);
-    filterOpen ? setHeight(40) : setHeight(120);
+    filterOpen ? setHeight(60) : setHeight(120);
   }
 
   return (

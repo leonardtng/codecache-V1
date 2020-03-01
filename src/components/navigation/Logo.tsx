@@ -30,8 +30,8 @@ const Logo: React.FC = () => {
   }
 
   return (
-    <currentProjectView.Consumer>{(context) => {
-      return <Button className={classes.logostyle} fullWidth onClick={() => { context.handleSetNavProject(false); handleClick() }}>
+    <currentProjectView.Consumer>{(projectContext) => {
+      return <Button className={classes.logostyle} fullWidth onClick={() => { projectContext.handleSetNavProject(false); handleClick() }}>
         <img className={classes.logocontain} src={logo} alt="codecache" />
       </Button>
     }}

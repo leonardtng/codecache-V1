@@ -1,8 +1,9 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
-import { userState } from '../../contexts/UserState';
 import { useHistory } from "react-router-dom";
+import { userState } from '../../contexts/UserState';
+import { currentProfileView } from '../../contexts/CurrentProfileView';
 import { currentProjectView } from '../../contexts/CurrentProjectView';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,14 +27,18 @@ const ProfileButton: React.FC = () => {
 
   return (
     <span className={classes.buttonroot}>
-      <currentProjectView.Consumer>{(context) => {
-      return <userState.Consumer>{(userContext) => {
-        return <Button size="small" className={classes.iconstyle} onClick={() => {context.handleSetNavProject(false); handleClick(userContext.username)}}>
-          Profile
-      </Button>
-      }}</userState.Consumer>
-    }}
-    </currentProjectView.Consumer>
+      <currentProjectView.Consumer>{(projectContext) => {
+        return <currentProfileView.Consumer>{(profileContext) => {
+          return <userState.Consumer>{(userContext) => {
+            return <Button size="small" className={classes.iconstyle} onClick={() => { projectContext.handleSetNavProject(false); profileContext.toggleProfileid(userContext.id); handleClick(userContext.username) }}>
+              Profile
+            </Button>
+          }}
+          </userState.Consumer>
+        }}
+        </currentProfileView.Consumer>
+      }}
+      </currentProjectView.Consumer>
     </span >
   );
 }

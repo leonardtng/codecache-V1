@@ -78,9 +78,9 @@ const LoginButton: React.FC = () => {
             Login with your Github account to link your Github account with CodeCache
           </DialogContentText>
         </DialogContent>
-        <userState.Consumer>{({ toggleLogin }) => (
+        <userState.Consumer>{(userContext) => (
           <DialogActions className={classes.actions}>
-            <Button variant="contained" color="secondary" size="small" onClick={toggleLogin}>
+            <Button variant="contained" color="secondary" size="small" onClick={userContext.toggleLogin}>
               <GitHubIcon />
               <div className={classes.github}>Github</div>
             </Button>
