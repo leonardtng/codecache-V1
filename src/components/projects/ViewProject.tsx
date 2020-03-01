@@ -16,9 +16,16 @@ const ViewProject: React.FC = () => {
         </Grid>
         <Grid item xs={8}>
           <ViewProjectCard project={project} />
-          <ViewOthers />
+
         </Grid>
         <Grid item xs={2}>
+        </Grid>
+        <Grid item xs={1}>
+        </Grid>
+        <Grid item xs={10}>
+          <ViewOthers project={project} />
+        </Grid>
+        <Grid item xs={1}>
         </Grid>
       </Grid>
     }}

@@ -10,7 +10,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import MergeTypeIcon from '@material-ui/icons/MergeType';
 import GroupIcon from '@material-ui/icons/Group';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
@@ -46,7 +45,9 @@ const useStyles = makeStyles((theme: Theme) =>
     tagsheader: {
       fontSize: '16px',
       paddingTop: '4%',
-      paddingBottom: '1%',
+    },
+    tag: {
+      paddingRight: '5%',
     },
     fontsize: {
       '& .MuiGrid-item': {
@@ -167,14 +168,12 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
                 <Typography variant="body2" color="textSecondary" component="p">
                   {props.project.description}
                 </Typography>
-                <Typography className={classes.tagsheader} variant="h5" color="textPrimary">
+                <Typography className={classes.tagsheader} variant="h6" color="textPrimary" gutterBottom>
                   Tags
-                  </Typography>
-                <Typography variant="subtitle2" color="textSecondary" component="p">
-                  {props.project.tags.map((tag: string) => {
-                    return <Button>{tag}</Button>
-                  })}
                 </Typography>
+                {props.project.tags.map((tag: string) => {
+                  return <Typography className={classes.tag} variant="overline" color="textPrimary" component="span">{tag}</Typography>
+                })}
               </CardContent>
             </Grid>
             <Grid item xs={12}>
