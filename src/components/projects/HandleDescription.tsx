@@ -35,8 +35,8 @@ const HandleDescription: React.FC<HandleDescriptionProps> = (props: HandleDescri
   const classes = useStyles();
 
   const modifyDescription = (description: string) => {
-    if (description.length > 275) {
-      const newDescription = description.slice(0, 270) + ' ...'
+    if (description.length > 235) {
+      const newDescription = description.slice(0, 230) + ' ...'
       return newDescription;
     };
     return description
