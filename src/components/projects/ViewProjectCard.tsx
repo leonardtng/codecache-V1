@@ -139,8 +139,8 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
               return <LoginAlert color={color} />
             }}
             </userState.Consumer>
-            <Typography variant="body2" color="textSecondary" component="p">
-              <div className={classes.sideicontext}>Like</div>
+            <Typography className={classes.sideicontext} variant="body2" color="textSecondary" component="div">
+              Like
             </Typography>
           </div>
           <ShareButton project={props.project} />
@@ -172,7 +172,7 @@ const ViewProjectCard: React.FC<ViewProjectCardProps> = (props: ViewProjectCardP
                   Tags
                 </Typography>
                 {props.project.tags.map((tag: string) => {
-                  return <Typography className={classes.tag} variant="overline" color="textPrimary" component="span">{tag}</Typography>
+                  return <Typography className={classes.tag} key={props.project.tags.indexOf(tag)} variant="overline" color="textPrimary" component="span">{tag}</Typography>
                 })}
               </CardContent>
             </Grid>

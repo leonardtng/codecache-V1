@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '10px 0',
       float: 'left',
     },
+    loginbutton: {
+      float: 'right',
+    },
   }),
 );
 

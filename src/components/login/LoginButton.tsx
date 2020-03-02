@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     github: {
-      padding: '0 9%',
+      padding: '0 8px',
     },
     dialog: {
       '& .MuiDialog-paperWidthSm': {

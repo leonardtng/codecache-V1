@@ -71,7 +71,7 @@ const ViewOthers: React.FC<ViewOthersProps> = (props: ViewOthersProps) => {
         </Typography>
       </Grid>
       {getSimilarProjects(clone).map((project) => {
-        return <Grid item xs={4}>
+        return <Grid item xs={4} key={getSimilarProjects(clone).indexOf(project)}>
           <ProjectCard
             id={project.id}
             img={project.img}

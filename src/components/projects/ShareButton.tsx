@@ -90,8 +90,8 @@ const ShareButton: React.FC<ShareButtonProps> = (props: ShareButtonProps) => {
       <IconButton aria-label="share" style={{ color: "#ffffff" }} onClick={handleClickOpen}>
         <ShareIcon />
       </IconButton>
-      <Typography variant="body2" color="textSecondary" component="p">
-        <div className={classes.sideicontext}>Share</div>
+      <Typography className={classes.sideicontext} variant="body2" color="textSecondary" component="div">
+        Share
       </Typography>
       <Dialog
         className={classes.dialog}
